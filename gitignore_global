@@ -1,0 +1,10 @@
+# Ignore ctag files
+*.tags
+.env.*
+tags
+tmux-client-*.log
+tmux-server-*.log
+vendor/bundle
+.eslintrc.js
+monster-vim-*.rb
+.envrc

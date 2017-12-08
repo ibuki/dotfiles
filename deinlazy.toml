@@ -1,0 +1,250 @@
+[[plugins]]
+repo = 'Shougo/neomru.vim'
+on_path = '.*'
+
+[[plugins]]
+repo = 'Shougo/neosnippet'
+hook_source = '''
+  imap <C-k> <Plug>(neosnippet_expand_or_jump)
+  smap <C-k> <Plug>(neosnippet_expand_or_jump)
+  xmap <C-k> <Plug>(neosnippet_expand_target)
+
+  imap <expr><TAB>
+    \ pumvisible() ? "\<C-n>" :
+    \ neosnippet#expandable_or_jumpable() ?
+    \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+  smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+    \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+  if has('conceal')
+    set conceallevel=2 concealcursor=niv
+  endif
+'''
+on_i = 1
+on_ft = ['snippet']
+depends = ['neosnippet-snippets']
+
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+if = 'has("nvim")'
+hook_source = '''
+  let g:deoplete#enable_at_startup = 1
+  inoremap <expr><tab> pumvisible() ? "\<C-n>" :
+    \ neosnippet#expandable_or_jumpable() ?
+    \    "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
+'''
+on_i = 1
+
+[[plugins]]
+repo = 'Shougo/denite.nvim'
+depends = ['neomru.vim']
+on_event = 'BufRead'
+hook_add = '''
+  nnoremap <silent> <C-f><C-b> :<C-u>Denite buffer<CR>
+  nnoremap <silent> <C-f><C-r> :<C-u>Denite file_rec<CR>
+  nnoremap <silent> <C-f><C-m> :<C-u>Denite file_mru<CR>
+  nnoremap <silent> <C-f><C-l> :<C-u>Denite line<CR>
+  nnoremap <silent> <C-f><C-g> :<C-u>Denite grep<CR>
+  nnoremap <silent> <C-f><C-]> :<C-u>DeniteCursorWord grep<CR>
+  nnoremap <silent> <C-f><C-y> :<C-u>Denite neoyank<CR>
+  nnoremap <silent> <C-f><C-e> :<C-u>Denite -resume<CR>
+  nnoremap <silent> <C-f>; :<C-u>Denite -resume -immediately -select=+1<CR>
+  nnoremap <silent> <C-f>- :<C-u>Denite -resume -immediately -select=-1<CR>
+  nnoremap <silent> <C-f><C-d> :<C-u>call denite#start([{'name': 'file_rec', 'args': ['~/dotfiles']}])<CR>
+  nnoremap ml :<C-u>call denite#start([{'name': 'file_rec', 'args': [g:memolist_path]}])<CR>
+'''
+hook_post_source = '''
+  if executable('ag')
+    call denite#custom#var('file_rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
+    call denite#custom#var('grep', 'command', ['ag'])
+  endif
+  call denite#custom#var('grep', 'recursive_opts', [])
+  call denite#custom#var('grep', 'default_opts', ['--follow', '--no-group', '--no-color'])
+  call deoplete#custom#set('_', 'matchers', ['matcher_cpsm'])
+  call denite#custom#filter('matcher_ignore_globs', 'ignore_globs',
+    \ [ '.git/', 'vendor/bundle/', 'app/assets/images/', 'image/', 'img/', 'fonts/', '*.min.*', '.DS_Store'])
+
+  highlight CursorLine guifg=#00bfff
+'''
+
+[[plugins]]
+repo = 'taka84u9/vim-ref-ri'
+on_ft = ['ruby', 'eruby', 'haml', 'slim']
+
+[[plugins]]
+repo = 'cespare/vim-toml'
+on_ft = 'toml'
+
+[[plugins]]
+# "gem install rcodetools" should be run.
+repo = 'osyo-manga/vim-monster'
+on_ft = ['ruby', 'slim']
+hook_add = '''
+  let g:monster#completion#rcodetools#backend = "async_rct_complete"
+  let g:deoplete#sources#omni#input_patterns = {
+  \   "ruby": '[^. *\t]\.\w*\|\h\w*::',
+  \ }
+'''
+
+[[plugins]]
+repo = 'tpope/vim-rails'
+on_ft = ['ruby', 'eruby', 'slim', 'haml']
+hook_add = '''
+  let g:rails_default_file = 'config/database.yml'
+
+  let g:rails_level     = 4
+  let g:rails_mappings  = 1
+  let g:rails_modelines = 0
+
+  :command -nargs=1 Em Emodel <args>
+  :command -nargs=1 Ec Econtroller <args>
+  :command -nargs=1 Ev Eview <args>
+  :command -nargs=1 Ef Efactory <args>
+
+  let g:rails_projections = {
+    \   "spec/factories/*.rb": {
+    \     "command": "factory",
+    \     "affinity": "collection",
+    \     "alternate": "app/models/%i.rb",
+    \     "related": "db/schema.rb#%s",
+    \     "test": "spec/models/%i_spec.rb",
+    \     "template": "FactoryGirl.define do\n  factory :%i do\n  end\nend",
+    \     "keywords": "factory sequence"
+    \   },
+    \   "app/data_uploaders/*_uploader.rb": {
+    \     "command": "uploader",
+    \     "template":
+    \       "class %SUploader",
+    \     "test": "spec/data_uploaders/%s_uploader_spec.rb",
+    \   },
+    \   "app/forms/*_form.rb": {
+    \     "command": "form",
+    \     "related": "app/models/%p.rb",
+    \     "template":
+    \       "class %SForm",
+    \     "test": "spec/forms/%s_form_spec.rb",
+    \   },
+    \   "app/pdf_generators/*_pdf_generators.rb": {
+    \     "command": "pdf",
+    \     "template":
+    \       "class %SPdfGenerator",
+    \     "test": "spec/pdf_generators/%s_pdf_generator_spec.rb",
+    \   },
+    \   "app/policies/*_policy.rb": {
+    \     "command": "policy",
+    \     "template":
+    \       "class %SPolicy",
+    \     "test": "spec/policies/%s_policy_spec.rb",
+    \   },
+    \   "app/presenters/*_presenter.rb": {
+    \     "command": "presenter",
+    \     "related": "app/models/%p.rb",
+    \     "template":
+    \       "class %SPresenter",
+    \     "test": "spec/presenters/%s_presenter_spec.rb",
+    \   },
+    \   "app/services/*.rb": {
+    \     "command": "service",
+    \     "test": "spec/services/%s_spec.rb",
+    \   },
+    \   "app/value_objects/*.rb": {
+    \     "command": "valueobj",
+    \     "test": "spec/value_objects/%s_spec.rb",
+    \   },
+    \   "app/values/*.rb": {
+    \     "command": "value",
+    \     "test": "spec/values/%s_spec.rb",
+    \   },
+    \   "app/view_objects/*_view_object.rb": {
+    \     "command": "viewobj",
+    \     "template":
+    \       "class %SViewObject",
+    \     "test": "spec/view_objects/%s_view_object_spec.rb",
+    \   },
+    \ }
+
+  "set path^=.,,~/src/rems3/rails/app/**,~/src/filer/app/**,~/src/filer-client/**    " . is directory where file you're editing exists. ,, is current directory.
+'''
+
+[[plugins]]
+repo = 'thoughtbot/vim-rspec'
+depends = ['vim-dispatch']
+on_ft = ['ruby']
+hook_add = '''
+  " Leader doesn't work for some reason.
+  nnoremap <Space>t :call RunCurrentSpecFile()<CR>
+  nnoremap <Space>s :call RunNearestSpec()<CR>
+  nnoremap <Space>l :call RunLastSpec()<CR>
+  nnoremap <Space>a :call RunAllSpecs()<CR>
+
+  " With bundle exec, a tmux pane remains even when a spec has succeeded.
+  " let g:rspec_command = "Dispatch bundle exec rspec {spec}"
+  let g:rspec_command = "Dispatch rspec {spec}"
+  let g:rspec_runner = "os_x_iterm2"
+'''
+
+[[plugins]]
+repo = 'othree/yajs.vim'
+on_ft = ['javascript']
+
+[[plugins]]
+repo = 'jiangmiao/simple-javascript-indenter'
+on_ft = ['javascript']
+hook_add = '''
+  let g:SimpleJsIndenter_CaseIndentLevel = -1
+'''
+
+[[plugins]]
+repo = 'lambdatoast/elm.vim'
+on_ft = 'elm'
+hook_add = '''
+  nnoremap <Leader>el :ElmEvalLine<CR>
+  vnoremap <Leader>es :<C-u>ElmEvalSelection<CR>
+  nnoremap <Leader>em :ElmMakeCurrentFile<CR>
+
+  augroup MyElm
+    autocmd!
+    autocmd BufWritePost *.elm ElmMakeCurrentFile
+    autocmd BufWritePost *.elm ElmMakeFile("Main.elm")
+  augroup END
+'''
+
+[[plugins]]
+repo = 'davidhalter/jedi-vim'
+on_ft = 'python'
+hook_add = '''
+  let g:jedi#rename_command = ""
+'''
+
+[[plugins]]
+repo = 'elixir-lang/vim-elixir'
+on_ft = ['elixir']
+
+[[plugins]]
+repo = 'slashmili/alchemist.vim'
+on_ft = ['elixir']
+hook_add = '''
+  let g:alchemist#elixir_erlang_src = "/usr/local/share/src"
+'''
+
+[[plugins]]
+repo = 'slim-template/vim-slim'
+on_ft = ['slim']
+
+[[plugins]]
+repo = 'derekwyatt/vim-scala'
+on_ft = ['scala']
+
+[[plugins]]
+# :PrevimOpen to show preview
+repo = 'plasticboy/vim-markdown'
+on_ft = ['md']
+hook_add = '''
+  au BufRead,BufNewFile *.md set filetype=markdown
+  let g:previm_open_cmd = 'open -a Google\ Chrome'
+  let g:vim_markdown_folding_disabled=1
+'''
+
+[[plugins]]
+repo = 'fatih/vim-go'
+on_ft = ['go']

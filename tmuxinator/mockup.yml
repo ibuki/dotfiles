@@ -1,0 +1,18 @@
+# ~/.tmuxinator/mockup.yml
+
+name: mockup
+root: ~/src/html-mockups
+
+windows:
+  - html_mockup:
+      layout: c514,300x69,0,0{222x69,0,0,0,77x69,223,0,1}
+      panes:
+        - vim
+        - #empty
+  - gulp_2222:
+      layout: c514,300x69,0,0{222x69,0,0,0,77x69,223,0,1}
+      panes:
+        - gulp:
+          - git pull
+          - npm install
+          - gulp

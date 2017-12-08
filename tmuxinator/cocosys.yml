@@ -1,0 +1,24 @@
+# ~/.tmuxinator/cocosys.yml
+
+name: cocosys
+root: ~/src/cocosys_line_app
+
+windows:
+  - cocosys:
+      layout: c514,300x69,0,0{222x69,0,0,0,77x69,223,0,1}
+      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
+      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
+      # synchronize: after
+      panes:
+        - vim
+        - #empty
+  - cocosys_server:
+      layout: even-vertical
+      panes:
+        - rails_server:
+          - find . -name "monster-vim-*.rb" -type f | xargs rm -rf
+          - be rails s -p 3000
+        - web_pack_server:
+          - yarn install
+          - ./bin/webpack-dev-server
+  - zsh:

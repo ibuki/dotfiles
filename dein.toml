@@ -1,0 +1,601 @@
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+[[plugins]]
+repo = 'Shougo/vimproc.vim'
+build = 'make'
+on_source = ['unite.vim']
+
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'
+hook_add = '''
+  " Use honza/vim-snippets
+  let g:neosnippet#snippets_directory='~/.dein/vim-snippets/snippets'
+'''
+
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+hook_add = '''
+  nnoremap <Leader>gd :<C-u>Gdiff<Enter>
+  nnoremap <Leader>gs :<C-u>Gstatus<Enter>
+  nnoremap <Leader>gl :<C-u>Glog<Enter>
+  nnoremap <Leader>ga :<C-u>Gwrite<Enter>
+  nnoremap <Leader>gc :<C-u>Gcommit<Enter>
+  nnoremap <Leader>gC :<C-u>Git commit --amend<Enter>
+  nnoremap <Leader>gb :<C-u>Gblame<Enter>
+'''
+
+[[plugins]]
+repo = 'vim-scripts/AnsiEsc.vim'
+
+[[plugins]]
+repo = 'powerman/vim-plugin-AnsiEsc'
+
+[[plugins]]
+repo = 'thinca/vim-quickrun'
+hook_add = '''
+  silent! nmap <unique>,r <Plug>(quickrun)
+
+  autocmd FileType quickrun AnsiEsc
+
+  let g:quickrun_config = {}
+  let g:quickrun_config._ = {
+    \   'runner': 'vimproc',
+    \   'runner/vimproc/updatetime': 40,
+    \   'outputter': 'multi:buffer:quickfix',
+    \   'outputter/buffer/split': ':botright 8sp',
+    \   'hook/close_quickfix/enable_hook_loaded': 1,
+    \   'hook/close_quickfix/enable_success': 1,
+    \   'hook/close_buffer/enable_failure': 1,
+    \   'hook/close_buffer/enable_empty_data': 1,
+    \   'hook/neco/enable': 1,
+    \   'hook/neco/wait': 20,
+    \ }
+
+  " rspec {{{
+  let s:rspec_quickrun_config = {
+    \   'command': 'rspec',
+    \   'outputter/buffer/split': ':vertical rightbelow',
+    \ }
+
+  let g:quickrun_config['rspec/bundle'] =
+  \ extend(copy(s:rspec_quickrun_config), {
+    \   'type': 'rspec/bundle',
+    \   'outputter': 'buffered:target=buffer',
+    \   'exec': 'bundle exec %c %o --color %s%a'
+    \ })
+
+  function! s:rspec_quickrun()
+    let b:quickrun_config = {'type' : 'rspec/bundle'}
+    nnoremap <expr><silent> <Leader>lr "<Esc>:QuickRun -args :" . line(".") . "<CR>"
+  endfunction
+
+  autocmd BufReadPost *_spec.rb call s:rspec_quickrun()
+  " }}}
+
+  let g:quickrun_config.markdown =
+    \ {
+    \   'outputter': 'browser',
+    \ }
+
+  " scala {{{
+  nnoremap <silent> \r :QuickRun -cmdopt "<CR>
+  " }}}
+'''
+
+[[plugins]]
+# "gem install refe2" should be run
+# cheatsheet: :Ref refe Array / K
+repo = 'thinca/vim-ref'
+hook_add = '''
+  "   Tips: push <S-k> on the word you want to search
+  let g:ref_source_webdict_sites = {
+  \   'wiktionary': {
+  \     'url': 'http://ja.wiktionary.org/wiki/%s',
+  \     'keyword_encoding': 'utf-8',
+  \     'cache': 1,
+  \   },
+  \   'wpj': 'http://ja.wikipedia.org/wiki/%s',
+  \   'wpe': 'http://ja.wikipedia.org/wiki/%s',
+  \   'wl' : {
+  \     'url': 'http://ejje.weblio.jp/content/%s',
+  \   },
+  \   'goo' : {
+  \     'url': 'http://dictionary.goo.ne.jp/srch/ej/%s/m0u/',
+  \   },
+  \ }
+
+  " 出力に対するフィルタ。最初の数行を削除している。
+  function! g:ref_source_webdict_sites.wiktionary.filter(output)
+    return join(split(a:output, "\n")[18 :], "\n")
+  endfunction
+  function! g:ref_source_webdict_sites.wl.filter(output)
+    return join(split(a:output, "\n")[59 :], "\n")
+  endfunction
+  function! g:ref_source_webdict_sites.goo.filter(output)
+    return join(split(a:output, "\n")[50 :], "\n")
+  endfunction
+
+  let g:ref_source_webdict_sites.default = 'goo'
+  let g:ref_source_webdict_use_cache = 1
+  " php
+  let g:ref_phpmanual_path = '/Users/ryuji.eguchi/phprefm'
+  nmap ,rf :<C-u>Ref refe<Space>
+  nmap ,rd :<C-u>Ref webdict<Space>
+  nmap ,rp :<C-u>Ref phpmanual<Space>
+'''
+
+[[plugins]]
+repo = 'thinca/vim-singleton'
+
+[[plugins]]
+repo = 'vim-scripts/lookupfile'
+depends = ['genutils']
+# used for refe
+
+[[plugins]]
+repo = 'vim-scripts/genutils'
+depends = ['multvals.vim']
+# lookupfile depends on it
+
+[[plugins]]
+repo = 'vim-scripts/multvals.vim'
+# genutils depends on it
+
+[[plugins]]
+repo = "osyo-manga/shabadou.vim"
+
+[[plugins]]
+repo = 'tpope/vim-surround'
+# cheatsheet: ys{motion}{surround} / ds{surround} / cs{old_surround}{new_surround}
+
+[[plugins]]
+repo = 'tpope/vim-repeat'
+
+[[plugins]]
+repo = 'tpope/vim-abolish'
+
+[[plugins]]
+repo = 'vim-scripts/patchreview.vim'
+hook_add = '''
+  let g:patchreview_filterdiff = '/usr/local/bin/filterdiff'
+'''
+
+[[plugins]]
+repo = 'vim-scripts/ruby-matchit'
+
+[[plugins]]
+repo = 'scrooloose/nerdcommenter'
+hook_add = '''
+  let NERDSpaceDelims    = 1 " Insert a space after comment
+  let g:NERDDefaultAlign = 'left'
+'''
+
+[[plugins]]
+repo = 'Shougo/vimfiler.vim'
+depends = 'unite.vim'
+hook_add = '''
+  let g:vimfiler_as_default_explorer  = 1
+  let g:vimfiler_safe_mode_by_default = 0 " safe mode is disabled by default
+  let g:vimfiler_ignore_pattern       = '^\%(.git\|.DS_Store\)$'
+
+  nnoremap <silent> ,f :VimFilerExplore -split -winwidth=60 -find -no-quit<CR>
+'''
+
+[[plugins]]
+repo = 'Shougo/unite.vim'
+
+[[plugins]]
+repo = 'fuenor/qfixgrep'
+hook_add = '''
+  set grepprg=egrep
+  let QFix_PreviewHeight = 10
+  let MyGrep_ExcludeReg = '[~#]$\|\.dll$\|\.exe$\|\.lnk$\|\.o$\|\.obj$\|\.pdf$\|\.xls$'
+  let MyGrep_ExcludeReg += '|[/\\].git[/\\]'
+  "let MyGrepcmd_useropt =        " Tried to set MyGrepcmd_useropt = '--exclude-dir=.git', but not supporeted at the native (e)grep
+  let g:MyGrepDefault_Ignorecase = 1
+'''
+
+[[plugins]]
+repo = 'Lokaltog/vim-easymotion'
+hook_add = '''
+  " ref: http://haya14busa.com/mastering-vim-easymotion/
+
+  " =======================================
+  " Boost your productivity with EasyMotion
+  " =======================================
+  " Disable default mappings
+  " If you are true vimmer, you should explicitly map keys by yourself.
+  " Do not rely on default bidings.
+  let g:EasyMotion_do_mapping = 0
+
+  " Or map prefix key at least(Default: <Leader><Leader>)
+  " map <Leader> <Plug>(easymotion-prefix)
+
+  " =======================================
+  " Find Motions
+  " =======================================
+  " Jump to anywhere you want by just `4` or `3` key strokes without thinking!
+  " `s{char}{char}{target}`
+  nmap ss <Plug>(easymotion-s2)
+  xmap ss <Plug>(easymotion-s2)
+  omap z <Plug>(easymotion-s2)
+  " Of course, you can map to any key you want such as `<Space>`
+  " map <Space>(easymotion-s2)
+
+  map  n <Plug>(easymotion-next)
+  map  N <Plug>(easymotion-prev)
+
+  " Turn on case sensitive feature
+  let g:EasyMotion_smartcase = 1
+
+  " =======================================
+  " Line Motions
+  " =======================================
+  " `JK` Motions: Extend line motions
+  map <Leader>j <Plug>(easymotion-j)
+  map <Leader>k <Plug>(easymotion-k)
+  " keep cursor column with `JK` motions
+  let g:EasyMotion_startofline = 0
+
+  " =======================================
+  " General Configuration
+  " =======================================
+  let g:EasyMotion_keys = ';HKLYUIOPNM,QWERTASDGZXCVBJF'
+  " Show target key with upper case to improve readability
+  let g:EasyMotion_use_upper = 1
+  " Jump to first match with enter & space
+  let g:EasyMotion_enter_jump_first = 1
+  let g:EasyMotion_space_jump_first = 1
+
+  " =======================================
+  " Search Motions
+  " =======================================
+  " Extend search motions with vital-over command line interface
+  " Incremental highlight of all the matches
+  " Now, you don't need to repetitively press `n` or `N` with EasyMotion feature
+  " `<Tab>` & `<S-Tab>` to scroll up/down a page with next match
+  " :h easymotion-command-line
+  nmap g/ <Plug>(easymotion-sn)
+  xmap g/ <Plug>(easymotion-sn)
+  omap g/ <Plug>(easymotion-tn)
+
+
+  " ref: http://haya14busa.com/mastering-vim-easymotion/
+  map f <Plug>(easymotion-fl)
+  map t <Plug>(easymotion-tl)
+  map F <Plug>(easymotion-Fl)
+  map T <Plug>(easymotion-Tl)
+'''
+
+[[plugins]]
+repo = 'kana/vim-smartchr'
+hook_add = '''
+  inoremap <expr> = smartchr#loop(' = ', '=', ' == ', ' === ')
+  inoremap <expr> , smartchr#one_of(', ', ',')
+  inoremap <expr> { smartchr#one_of('{', '#{')
+'''
+
+[[plugins]]
+repo = 'tmhedberg/matchit'
+
+[[plugins]]
+repo = 'vim-scripts/sudo.vim'
+
+[[plugins]]
+repo = 'vim-scripts/L9'
+
+[[plugins]]
+repo = 'mattn/emmet-vim'
+hook_add = '''
+  let g:user_emmet_settings = {
+  \   'lang' : 'ja'
+  \ }
+'''
+
+[[plugins]]
+repo = 'inotom/str2htmlentity'
+hook_add = '''
+  vmap <silent> sr :Entity2HtmlString<CR>
+  vmap <silent> sx :Str2HtmlEntity<CR>
+'''
+
+[[plugins]]
+repo = 'vim-jp/vimdoc-ja'
+
+[[plugins]]
+repo = 'flazz/vim-colorschemes'
+
+[[plugins]]
+repo = 'tyru/open-browser.vim'
+hook_add = '''
+  let g:netrw_nogx = 1 " disable netrw's gx mapping.
+
+  nmap gx <Plug>(openbrowser-smart-search)
+  vmap gx <Plug>(openbrowser-smart-search)
+'''
+
+[[plugins]]
+repo = 'joker1007/vim-markdown-quote-syntax'
+
+[[plugins]]
+repo = 'mxw/vim-jsx'
+
+[[plugins]]
+repo = 'rizzatti/dash.vim'
+
+[[plugins]]
+repo = 'mileszs/ack.vim'
+hook_add = '''
+  if executable('ag')
+    let g:ackprg = 'ag --vimgrep'
+  endif
+
+  cnoreabbrev Ag Ack!
+  cnoreabbrev Ack Ack!
+  nnoremap <Leader>a :Ack!<Space>
+'''
+
+[[plugins]]
+repo = 'tomasr/molokai'
+hook_add = '''
+  set background=dark
+  colorscheme molokai
+
+  autocmd ColorScheme * highlight Comment ctermfg=51 guifg=#6495ED
+  set t_Co=256
+  set termguicolors
+'''
+
+[[plugins]]
+repo = 'vim-airline/vim-airline'
+hook_add = '''
+  " set guifont=Monaco\ for\ Powerline:h24
+
+  set laststatus=2
+  let g:airline#extensions#tabline#enabled = 1
+  " let g:airline_powerline_fonts = 1
+  let g:airline_theme = 'molokai'
+'''
+
+[[plugins]]
+repo = 'vim-airline/vim-airline-themes'
+
+[[plugins]]
+repo = 'othree/eregex.vim'
+
+[[plugins]]
+repo = 'Shougo/context_filetype.vim'
+# used for vim-precious
+
+[[plugins]]
+repo = 'kana/vim-textobj-user'
+# used for vim-precious
+
+[[plugins]]
+repo = 'kana/vim-textobj-line'
+# used for vim-expand-region
+
+[[plugins]]
+repo = 'terryma/vim-expand-region'
+depends = ['kana/vim-textobj-line']
+#hook_add = '''
+#  vmap v <Plug>(expand_region_expand)
+#  vmap <C-v> <Plug>(expand_region_shrink)
+#'''
+
+[[plugins]]
+repo = 'alpaca-tc/alpaca_tags'
+depends = ['Shougo/vimproc']
+hook_add = '''
+  augroup AlpacaTags
+    autocmd!
+    if exists(':AlpacaTags')
+      autocmd BufWritePost Gemfile AlpacaTagsBundle
+      autocmd BufEnter * AlpacaTagsSet
+      autocmd BufWritePost * AlpacaTagsUpdate
+    endif
+  augroup END
+
+  let g:alpaca_tags#config = {
+    \   '_': '-R --sort=yes',
+    \   'ruby': '--languages=+Ruby',
+    \   'js': '--languages=+js',
+    \ }
+'''
+
+[[plugins]]
+repo = 'tpope/vim-dispatch'
+
+[[plugins]]
+repo = 'nixprime/cpsm'
+build = 'env PY3=ON ./install.sh'
+
+[[plugins]]
+repo = 'junegunn/vim-easy-align'
+hook_add = '''
+  " Start interactive EasyAlign in visual mode (e.g. vipga)
+  xmap ga <Plug>(EasyAlign)
+
+  " Start interactive EasyAlign for a motion/text object (e.g. gaip)
+  nmap ga <Plug>(EasyAlign)
+'''
+
+[[plugins]]
+repo = 'sheerun/vim-polyglot'
+
+[[plugins]]
+repo = 'nathanaelkane/vim-indent-guides'
+hook_add = '''
+  let g:indent_guides_enable_on_vim_startup = 1
+  let g:indent_guides_start_level = 2
+  let g:indent_guides_guide_size = 1
+  let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'tagbar', 'calendar', 'thumbnail']
+'''
+
+[[plugins]]
+repo = 'vim-scripts/vim-auto-save'
+hook_add = '''
+  let g:auto_save = 1                " enable AutoSave on Vim startup
+  let g:auto_save_in_insert_mode = 0 " do not save while in insert mode
+  let g:auto_save_silent = 1         " do not display the auto-save notification
+'''
+
+[[plugins]]
+repo = 'LeafCage/yankround.vim'
+hook_add = '''
+  nmap p <Plug>(yankround-p)
+  xmap p <Plug>(yankround-p)
+  nmap P <Plug>(yankround-P)
+  nmap gp <Plug>(yankround-gp)
+  xmap gp <Plug>(yankround-gp)
+  nmap gP <Plug>(yankround-gP)
+  nmap <C-b> <Plug>(yankround-prev)
+  nmap <C-f> <Plug>(yankround-next)
+'''
+
+# Conflict with auto-pairs. Should be defined before auto-pairs.
+# To avoid the conflict, clear install might be needed.
+[[plugins]]
+repo = 'tpope/vim-endwise'
+on_i = 1
+#hook_add = '''
+#  " ref: http://d.hatena.ne.jp/tacahiroy/20110927/1326981522
+#  inoremap <expr> <silent> <Cr> <SID>CrInInsertModeBetterWay()
+#
+#  function! s:CrInInsertModeBetterWay()
+#    return pumvisible() ? neocomplcache#close_popup()."\<Cr>" : "\<Cr>"
+#  endfunction
+#
+#  "let g:endwise_no_mappings = 1
+#'''
+
+[[plugins]]
+repo = 'jiangmiao/auto-pairs'
+
+[[plugins]]
+repo = 'w0rp/ale'
+hook_add = '''
+  let g:ale_statusline_format = ['E%d', 'W%d', '']
+
+  let g:ale_echo_msg_error_str   = 'E'
+  let g:ale_echo_msg_warning_str = 'W'
+  let g:ale_echo_msg_format      = '[%linter%][%severity%] %s'
+
+  let g:ale_linters = {
+    \   'javascript': ['eslint'],
+    \ }
+
+  nmap <silent> <C-l><C-k> <Plug>(ale_previous_wrap)
+  nmap <silent> <C-l><C-j> <Plug>(ale_next_wrap)
+'''
+# for vim: "pip3 install vim-vint" should be run
+
+[[plugins]]
+repo = 'jceb/vim-orgmode'
+
+[[plugins]]
+repo = 'AndrewRadev/switch.vim'
+hook_add = '''
+  " ref: https://github.com/AndrewRadev/switch.vim#nested-dict-definitions
+  " Replace underscored identifier names with their camelcased versions.
+  let b:switch_custom_definitions = [
+    \   {
+    \     '\<[a-z0-9]\+_\k\+\>': {
+    \       '_\(.\)': '\U\1'
+    \     },
+    \     '\<[a-z0-9]\+[A-Z]\k\+\>': {
+    \       '\([A-Z]\)': '_\l\1'
+    \     },
+    \   }
+    \ ]
+
+  " ref: https://github.com/AndrewRadev/switch.vim/wiki/Erlang-Strings
+  autocmd FileType erlang let b:switch_custom_definitions = [
+    \   {
+    \     '<<"\([^"]*\)">>':       '"\1"',
+    \     '\%(<<\)\@<!"\([^"]*\)"': '<<"\1">>',
+    \   }
+    \ ]
+'''
+
+[[plugins]]
+repo = 'majutsushi/tagbar'
+hook_add = '''
+  nnoremap <F9> :TagbarToggle<CR>
+'''
+
+[[plugins]]
+repo = 'elzr/vim-json'
+
+[[plugins]]
+repo = 'bronson/vim-trailing-whitespace'
+
+[[plugins]]
+repo = 'osyo-manga/vim-precious'
+depends = ['Shougo/context_filetype.vim', 'kana/vim-textobj-user']
+hook_add = '''
+  " Enable the plugin on insert mode only.
+  "let g:precious_enable_switch_CursorMoved = { '*': 0 }
+  "let g:precious_enable_switch_CursorMoved = { '*': 1 }
+  "let g:precious_enable_switch_CursorMoved_i = { '*' : 1 }
+
+  let g:precious_enable_switch_CursorMoved = {
+  \  "*" : 1,
+  \  "help" : 0,
+  \ }
+
+  " Avoid to change syntax highlighting dynamically.
+  let g:precious_enable_switchers = {
+  \  "slim" : {
+  \    "setfiletype" : 0,
+  \   },
+  \  "haml" : {
+  \    "setfiletype" : 0,
+  \   },
+  \  "eruby" : {
+  \    "setfiletype" : 0,
+  \   },
+  \  "markdown" : {
+  \    "setfiletype" : 0,
+  \   }
+  \ }
+
+  augroup MyPrecious
+    autocmd!
+    autocmd InsertEnter * :PreciousSwitch
+    autocmd InsertLeave * :PreciousReset
+  augroup END
+
+  " Display filetype when context is changed.
+  " Useful to debug to see what filetype is used.
+  "augroup DiplayFileType
+  "  autocmd!
+  "  " コンテキストが切り替わった時にその filetype を表示
+  "  autocmd User PreciousFileType :echo precious#context_filetype()
+  "augroup END
+'''
+
+[[plugins]]
+repo = 'houtsnip/vim-emacscommandline'
+# Original commands can be excuted with <C-o>.
+
+[[plugins]]
+repo = 'dhruvasagar/vim-table-mode'
+hook_add = '''
+  let g:table_mode_corner = '|' " Markdown-compatible table
+'''
+
+[[plugins]]
+repo = 'jreybert/vimagit'
+hook_add = '''
+  let g:magit_default_show_all_files = 2
+  let g:magit_default_fold_level = 2
+  let g:magit_default_sections = ['info', 'global_help', 'commit', 'staged', 'unstaged']
+'''
+
+[[plugins]]
+repo = 'airblade/vim-gitgutter'
+hook_add = '''
+  let g:gitgutter_git_executable = '/usr/local/bin/git'
+'''

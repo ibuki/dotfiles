@@ -1,0 +1,18 @@
+[user]
+	name = Ryuji Eguchi
+	email = jp.ryuji@gmail.com
+[credential]
+	helper = osxkeychain
+[push]
+	default = simple
+[core]
+	editor = nvim
+	excludesfile = ${HOME}/.gitignore_global
+[alias]
+	c = commit -v
+	o = checkout
+	b = checkout -b
+	r = remote
+	p = pull
+	pu = push
+	puu = push -u
