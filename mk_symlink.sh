@@ -17,8 +17,8 @@ ln -s dotfiles/zshrc .zshrc
 ln -s dotfiles/zshrc.alias_public .zshrc.alias_public
 ln -s dotfiles/vim .vim
 
-ln -s dotfiles/dein.toml dein.toml
-ln -s dotfiles/deinlazy.toml deinlazy.toml
+ln -s dotfiles/dein.toml .dein.toml
+ln -s dotfiles/deinlazy.toml .deinlazy.toml
 
 # neovim
 mkdir -p ${HOME}/.config/nvim

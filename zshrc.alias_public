@@ -31,3 +31,5 @@ alias -s avi=svlc
 alias -s mp4v=svlc
 
 alias tmux='tmux -2'
+alias vi='nvim'
+alias vim='nvim'

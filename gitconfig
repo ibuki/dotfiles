@@ -1,18 +1,22 @@
 [user]
-	name = Ryuji Eguchi
-	email = jp.ryuji@gmail.com
-[credential]
-	helper = osxkeychain
+  name = Ibuki Nakamura
+  email = ibuki.nakamura@reapra.sg
+[credenial]
+  helper = osxkeychain
+[pull]
+  ff = only
+[merge]
+  ff = false
 [push]
-	default = simple
+  default = simple
 [core]
-	editor = nvim
-	excludesfile = ${HOME}/.gitignore_global
+  editor = nvim
+  excludesfile = ${HOME}/.gitignore_global
 [alias]
-	c = commit -v
-	o = checkout
-	b = checkout -b
-	r = remote
-	p = pull
-	pu = push
-	puu = push -u
+  c = commit -v
+  o = checkout
+  b = checkout -b
+  r = remote
+  p = pull
+  pu = push
+  puu = push -u

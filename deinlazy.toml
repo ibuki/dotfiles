@@ -96,10 +96,10 @@ hook_add = '''
   let g:rails_mappings  = 1
   let g:rails_modelines = 0
 
-  :command -nargs=1 Em Emodel <args>
-  :command -nargs=1 Ec Econtroller <args>
-  :command -nargs=1 Ev Eview <args>
-  :command -nargs=1 Ef Efactory <args>
+  :command! -nargs=1 Em Emodel <args>
+  :command! -nargs=1 Ec Econtroller <args>
+  :command! -nargs=1 Ev Eview <args>
+  :command! -nargs=1 Ef Efactory <args>
 
   let g:rails_projections = {
     \   "spec/factories/*.rb": {
@@ -243,6 +243,8 @@ hook_add = '''
   au BufRead,BufNewFile *.md set filetype=markdown
   let g:previm_open_cmd = 'open -a Google\ Chrome'
   let g:vim_markdown_folding_disabled=1
+  let g:vim_markdown_conceal = 0
+  nnoremap <Leader>tt :TableModeRealign<CR>
 '''
 
 [[plugins]]

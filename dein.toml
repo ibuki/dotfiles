@@ -179,7 +179,7 @@ hook_add = '''
   let g:vimfiler_safe_mode_by_default = 0 " safe mode is disabled by default
   let g:vimfiler_ignore_pattern       = '^\%(.git\|.DS_Store\)$'
 
-  nnoremap <silent> ,f :VimFilerExplore -split -winwidth=60 -find -no-quit<CR>
+  nnoremap <silent> ,f :VimFilerExplore -split -winwidth=30 -find -force-hide<CR>
 '''
 
 [[plugins]]
@@ -256,9 +256,9 @@ hook_add = '''
   " Now, you don't need to repetitively press `n` or `N` with EasyMotion feature
   " `<Tab>` & `<S-Tab>` to scroll up/down a page with next match
   " :h easymotion-command-line
-  nmap g/ <Plug>(easymotion-sn)
-  xmap g/ <Plug>(easymotion-sn)
-  omap g/ <Plug>(easymotion-tn)
+  nmap / <Plug>(easymotion-sn)
+  xmap / <Plug>(easymotion-sn)
+  omap / <Plug>(easymotion-tn)
 
 
   " ref: http://haya14busa.com/mastering-vim-easymotion/
@@ -361,8 +361,8 @@ hook_add = '''
 [[plugins]]
 repo = 'vim-airline/vim-airline-themes'
 
-[[plugins]]
-repo = 'othree/eregex.vim'
+#[[plugins]]
+#repo = 'othree/eregex.vim'
 
 [[plugins]]
 repo = 'Shougo/context_filetype.vim'
@@ -483,6 +483,7 @@ hook_add = '''
   let g:ale_echo_msg_format      = '[%linter%][%severity%] %s'
 
   let g:ale_linters = {
+    \   'ruby': ['rubocop', 'ruby'],
     \   'javascript': ['eslint'],
     \ }
 
@@ -597,5 +598,8 @@ hook_add = '''
 [[plugins]]
 repo = 'airblade/vim-gitgutter'
 hook_add = '''
-  let g:gitgutter_git_executable = '/usr/local/bin/git'
+  let g:gitgutter_git_executable = '/usr/bin/git'
 '''
+
+[[plugins]]
+repo = 'thinca/vim-qfreplace'

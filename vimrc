@@ -34,8 +34,8 @@ execute 'set runtimepath^=' . s:dein_repo_dir
 if dein#load_state(s:dein_dir)
   call dein#begin(s:dein_dir)
 
-  let s:toml = '~/dein.toml'
-  let s:lazytoml = '~/deinlazy.toml'
+  let s:toml = '~/.dein.toml'
+  let s:lazytoml = '~/.deinlazy.toml'
   call dein#load_toml(s:toml, {'lazy': 0})
   call dein#load_toml(s:lazytoml, {'lazy': 1})
 
@@ -56,7 +56,7 @@ endif
 
 " Basic settings {{{
 let g:python3_host_prog = expand('~/.pyenv/versions/neovim3/bin/python')
-let g:python_host_prog = expand('~/.pyenv/versions/2.7.13/bin/python')
+let g:python_host_prog = expand('~/.pyenv/versions/neovim2/bin/python')
 
 set shell=zsh
 set title                       " Show title
@@ -108,7 +108,7 @@ set virtualedit=block           " Enable to move a cursor where there is no char
 " Completion
 set wildmenu                    " コマンドライン補完を拡張モードにする
 set wildchar=<tab>              " コマンド補完を開始するキー
-set wildmode=list:full          " リスト表示，最長マッチ
+set wildmode=list:longest,full          " リスト表示，最長マッチ
 set history=1000                " コマンド・検索パターンの履歴数
 set complete+=k                 " 補完に辞書ファイル追加
 
@@ -168,6 +168,10 @@ let g:mapleader = "\<Space>"
 nnoremap <Leader>w :w<CR>
 
 " Move across buffers
+nnoremap <C-a> 0
+nnoremap <C-e> $
+
+" Move across buffers
 nnoremap <C-p> :bp<CR>
 nnoremap <C-n> :bn<CR>
 nnoremap <C-q><C-q> :bd<CR>
@@ -186,7 +190,7 @@ vnoremap v $h
 
 " Enable to add indents continuously.
 vnoremap < <gv
-vnoremap > <gv
+vnoremap > >gv
 
 " Delete highlight on search
 nnoremap <silent><ESC><ESC> :nohlsearch<CR>
@@ -339,3 +343,9 @@ let g:expand_region_text_objects = {
       \ 'ie'  :1,
       \ }
 " }}}
+
+" Edit Vimrc
+nnoremap <silent> <Leader>.v :<c-u>edit $MYVIMRC<cr>
+nnoremap <silent> <Leader>.d :<c-u>edit ~/.dein.toml<cr>
+nnoremap <silent> <Leader>.l :<c-u>edit ~/.deinlazy.toml<cr>
+nnoremap <Leader>, :<c-u>source $MYVIMRC<cr>

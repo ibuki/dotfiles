@@ -2,15 +2,7 @@
 export XDG_CONFIG_HOME=$HOME/.config
 
 
-#################### Key repeat
-defaults write -g InitialKeyRepeat -int 10 # normal minimum is 15 (225 ms)
-defaults write -g KeyRepeat -int 2         # normal minimum is 2 (30 ms)
-
-
 #################### complition
-#autoload -U compinit
-#compinit
-
 fpath=(/usr/local/share/zsh-completions $fpath)
 
 autoload -Uz compinit
@@ -46,6 +38,7 @@ setopt no_beep
 setopt share_history
 setopt pushd_ignore_dups
 setopt print_eight_bit
+setopt ignore_eof
 
 
 #################### prompt
@@ -127,14 +120,6 @@ bindkey "^N" history-beginning-search-forward-end
 eval "$(/usr/local/bin/direnv hook zsh)"
 
 
-#################### source the private setting files
-[ -f ~/.zshrc.mine ] && source ~/.zshrc.mine
-
-
-#################### original commands
-export PATH=$HOME/dotfiles/bin:$PATH
-
-
 #################### gcloud
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f ~/google-cloud-sdk/path.zsh.inc ]; then
@@ -147,12 +132,26 @@ if [ -f ~/google-cloud-sdk/completion.zsh.inc ]; then
 fi
 
 
+#################### rbenv
+export PATH=$HOME/.rbenv/bin:$PATH
+eval "$(rbenv init - zsh)"
+
+
+#################### nvm
+export NVM_DIR=$HOME/.nvm
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+
+
+#################### gopath
+export GOPATH=$HOME/.go
+export PATH=$HOME/.go/bin:$PATH
+
+
 #################### pyenv pyenv-virtualenvs
 export PYENV_ROOT=$HOME/.pyenv
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 export PATH=$PYENV_ROOT/bin:$PATH
-if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
-if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; eval "$(pyenv virtualenv-init -)"; fi
 
 if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
   export WORKON_HOME=$HOME/.virtualenvs
@@ -167,12 +166,11 @@ fi
 
 
 #################### cool-peco init
-FPATH="${FPATH}:${HOME}/cool-peco"
+FPATH="${FPATH}:${HOME}/.ghq/github.com/ryoppy/cool-peco"
 autoload -Uz cool-peco
 cool-peco
 
 bindkey '^r' cool-peco-history # ctrl+r
-bindkey '^h' cool-peco-ssh
 
 alias ff=cool-peco-filename-search
 alias gbb=cool-peco-git-checkout
@@ -183,4 +181,13 @@ alias pps=cool-peco-ps
 
 
 #################### docker
-if which docker-machine > /dev/null; then eval "$(docker-machine env default)"; fi
+# if which docker-machine > /dev/null; then eval "$(docker-machine env default)"; fi
+
+
+#################### original commands
+export PATH=$HOME/dotfiles/bin:$PATH
+export PATH=$HOME/bin:$PATH
+
+
+#################### source the private setting files
+[ -f ~/.zshrc.mine ] && source ~/.zshrc.mine
