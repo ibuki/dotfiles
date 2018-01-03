@@ -316,11 +316,11 @@ nnoremap <silent>cf  :CopyFileName<CR>
 
 " Delete whitespaces {{{
 " Delete spaces where there are only spaces at the lines.
-nnoremap <Leader>ws :%s/^ *$//g<CR>
+nnoremap <Leader>ws :%s/ +$//g<CR>
 
 " Delete trailing whitespaces in visual mode.
 function! DelTrailingWhitespacesWithRange() range
-  execute (a:firstline) . ',' . a:lastline . 's/ *$//g'
+  execute (a:firstline) . ',' . a:lastline . 's/ +$//g'
 endfunction
 vnoremap ws :call DelTrailingWhitespacesWithRange()<CR>
 " }}}
