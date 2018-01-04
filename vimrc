@@ -344,6 +344,19 @@ let g:expand_region_text_objects = {
       \ }
 " }}}
 
+" autowrite
+set autowriteall
+set updatetime=500
+
+function s:AutoWriteIfPossible()
+  if &modified && !&readonly && bufname('%') !=# '' && &buftype ==# '' && expand("%") !=# ''
+    write
+  endif
+endfunction
+
+autocmd CursorHold * call s:AutoWriteIfPossible()
+autocmd CursorHoldI * call s:AutoWriteIfPossible()
+
 " Edit Vimrc
 nnoremap <silent> <Leader>.v :<c-u>edit $MYVIMRC<cr>
 nnoremap <silent> <Leader>.d :<c-u>edit ~/.dein.toml<cr>
