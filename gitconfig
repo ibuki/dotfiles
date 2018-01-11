@@ -11,7 +11,7 @@
   default = simple
 [core]
   editor = nvim
-  excludesfile = ${HOME}/.gitignore_global
+  excludesfile = ~/.gitignore_global
 [alias]
   c = commit -v
   o = checkout
