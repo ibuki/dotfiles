@@ -208,6 +208,9 @@ nnoremap <Leader>j !python -m json.tool<CR>
 if has('nvim')
   tnoremap <silent> <ESC> <C-\><C-n>
 endif
+
+" delete char at insert
+inoremap <C-d> <Del>
 " }}}
 
 
