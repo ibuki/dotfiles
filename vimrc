@@ -55,8 +55,8 @@ endif
 
 
 " Basic settings {{{
-let g:python3_host_prog = expand('~/.pyenv/versions/neovim3/bin/python')
-let g:python_host_prog = expand('~/.pyenv/versions/neovim2/bin/python')
+let g:python3_host_prog = expand('/usr/local/bin/python3')
+let g:python_host_prog = expand('/usr/local/bin/python2')
 
 set shell=zsh
 set title                       " Show title

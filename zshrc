@@ -147,16 +147,9 @@ export GOPATH=$HOME/.go
 export PATH=$HOME/.go/bin:$PATH
 
 
-#################### pyenv pyenv-virtualenvs
-export PYENV_ROOT=$HOME/.pyenv
-export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-export PATH=$PYENV_ROOT/bin:$PATH
-if which pyenv > /dev/null; then eval "$(pyenv init -)"; eval "$(pyenv virtualenv-init -)"; fi
-
-if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
-  export WORKON_HOME=$HOME/.virtualenvs
-  source /usr/local/bin/virtualenvwrapper.sh
-fi
+#################### python
+export PATH=$HOME/Library/Python/2.7/bin:$PATH
+export PATH=$HOME/Library/Python/3.6/bin:$PATH
 
 
 #################### tmux
