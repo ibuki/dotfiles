@@ -1,0 +1,24 @@
+# ~/.tmuxinator/rails.yml
+
+name: rails
+
+windows:
+  - coding:
+      layout: main-vertical
+      panes:
+        - #empty
+        - gs
+        - be rails c
+  - server:
+      layout: even-horizontal
+      panes:
+        - rails_server:
+          - bin/webpack-dev-server &
+          - be rails s
+        - rails_console:
+          - be rails c
+  - zsh:
+      layout: even-horizontal
+      panes:
+        - #empty
+        - #empty

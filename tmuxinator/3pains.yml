@@ -1,0 +1,24 @@
+# ~/.tmuxinator/3pains.yml
+
+name: 3pains
+
+windows:
+  - coding:
+      layout: main-vertical
+      panes:
+        - #empty
+        - #empty
+        - #empty
+  # - server:
+  #     layout: even-horizontal
+  #     panes:
+  #       - rails_server:
+  #         - bin/webpack-dev-server &
+  #         - be rails s
+  #       - rails_console:
+  #         - be rails c
+  - zsh:
+      layout: even-horizontal
+      panes:
+        - #empty
+        - #empty
