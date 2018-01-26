@@ -339,11 +339,11 @@ hook_add = '''
 [[plugins]]
 repo = 'tomasr/molokai'
 hook_add = '''
-  set background=dark
   colorscheme molokai
 
   autocmd ColorScheme * highlight Comment ctermfg=51 guifg=#6495ED
-  set t_Co=256
+  autocmd ColorScheme * highlight Normal guibg=none
+  autocmd ColorScheme * highlight LineNr guifg=white
   set termguicolors
 '''
 
