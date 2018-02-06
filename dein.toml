@@ -340,12 +340,12 @@ hook_add = '''
 [[plugins]]
 repo = 'tomasr/molokai'
 hook_add = '''
-  colorscheme molokai
-
   autocmd ColorScheme * highlight Comment ctermfg=51 guifg=#6495ED
   autocmd ColorScheme * highlight Normal guibg=none
   autocmd ColorScheme * highlight LineNr guifg=white
   set termguicolors
+
+  au MyAutoCmd VimEnter * nested colorscheme molokai
 '''
 
 [[plugins]]
