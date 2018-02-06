@@ -25,11 +25,12 @@ hook_add = '''
   nnoremap <Leader>gb :<C-u>Gblame<Enter>
 '''
 
-[[plugins]]
-repo = 'vim-scripts/AnsiEsc.vim'
+#[[plugins]]
+#repo = 'vim-scripts/AnsiEsc.vim'
 
-[[plugins]]
-repo = 'powerman/vim-plugin-AnsiEsc'
+#[[plugins]]
+#repo = 'powerman/vim-plugin-AnsiEsc'
+
 
 [[plugins]]
 repo = 'thinca/vim-quickrun'
