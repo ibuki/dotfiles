@@ -522,8 +522,8 @@ hook_add = '''
 [[plugins]]
 repo = 'elzr/vim-json'
 
-[[plugins]]
-repo = 'bronson/vim-trailing-whitespace'
+# [[plugins]]
+# repo = 'bronson/vim-trailing-whitespace'
 
 [[plugins]]
 repo = 'osyo-manga/vim-precious'
