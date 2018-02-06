@@ -596,3 +596,9 @@ hook_add = '''
 
 [[plugins]]
 repo = 'thinca/vim-qfreplace'
+
+[[plugins]]
+repo = 'captbaritone/better-indent-support-for-php-with-html'
+
+[[plugins]]
+repo = 'mattn/emmet-vim'

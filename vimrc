@@ -202,7 +202,7 @@ nnoremap <F3> :set paste!<Bar>set paste?<CR>
 nnoremap <C-]> g<C-]>
 
 " Format JSON
-nnoremap <Leader>j !python -m json.tool<CR>
+" nnoremap <Leader>j !python -m json.tool<CR>
 
 " neovim terminal
 if has('nvim')
@@ -211,6 +211,11 @@ endif
 
 " delete char at insert
 inoremap <C-d> <Del>
+
+" replace selection
+nnoremap <Leader><C-r> "zyiw:let @/='\<'.@z.'\>'<CR>:set hlsearch<CR>:%s/<C-r>///gc<Left><Left><Left>
+vnoremap <Leader><C-r> "zy:let @/=@z<CR>:set hlsearch<CR>:%s/<C-r>///gc<Left><Left><Left>
+
 " }}}
 
 
@@ -359,6 +364,20 @@ endfunction
 
 autocmd CursorHold * call s:AutoWriteIfPossible()
 autocmd CursorHoldI * call s:AutoWriteIfPossible()
+
+" HighlightInfo
+function! s:get_syn_id(transparent)
+    let synid = synID(line('.'), col('.'), 1)
+    return a:transparent ? synIDtrans(synid) : synid
+endfunction
+function! s:get_syn_name(synid)
+    return synIDattr(a:synid, 'name')
+endfunction
+function! s:get_highlight_info()
+    execute "highlight " . s:get_syn_name(s:get_syn_id(0))
+    execute "highlight " . s:get_syn_name(s:get_syn_id(1))
+endfunction
+command! HighlightInfo call s:get_highlight_info()
 
 " Edit Vimrc
 nnoremap <silent> <Leader>.v :<c-u>edit $MYVIMRC<cr>
