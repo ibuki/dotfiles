@@ -41,3 +41,33 @@ alias gcmt='git commit -m'
 alias od='OVERCOMMIT_DISABLE=1'
 alias top='top -ocpu'
 alias ssh='if ! ssh-add -l >& /dev/null ; then ssh-add -t 12h ; fi ; ssh'
+alias t=todo-today
+alias tickets="cd ~/Dropbox/Tickets; ls -l"
+
+# functions
+
+function todo-today {
+  cd ~/Dropbox/Tickets
+  DATE=`date +%y%m%d`
+  FILENAME=todo_$DATE.md
+  if [[ ! -f $FILENAME ]]; then
+    PREVFILENAME=`ls -t | head -1`
+    echo "# $DATEのTODO" >> $FILENAME
+    echo '' >> $FILENAME
+    echo '# これまで' >> $FILENAME
+    echo -n '#' >> $FILENAME
+    cat $PREVFILENAME >> $FILENAME
+    echo '' >> $FILENAME
+    echo '# これから' >> $FILENAME
+    echo '' >> $FILENAME
+    echo '- 昨日やったこと' >> $FILENAME
+    echo '  - ' >> $FILENAME
+    echo '- 今日やること' >> $FILENAME
+    echo '  - ' >> $FILENAME
+    echo '- 困っていること' >> $FILENAME
+    echo '  - ' >> $FILENAME
+    echo '- その他共有事項' >> $FILENAME
+    echo '  - ' >> $FILENAME
+  fi
+  nvim $FILENAME
+}
