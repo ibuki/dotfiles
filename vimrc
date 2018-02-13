@@ -213,6 +213,8 @@ endif
 inoremap <C-d> <Del>
 
 " replace selection
+nnoremap <Leader>r "zyiw:let @/='\<'.@z.'\>'<CR>:set hlsearch<CR>:,$s/<C-r>///gc<Left><Left><Left>
+vnoremap <Leader>r "zy:let @/=@z<CR>:set hlsearch<CR>:,$s/<C-r>///gc<Left><Left><Left>
 nnoremap <Leader><C-r> "zyiw:let @/='\<'.@z.'\>'<CR>:set hlsearch<CR>:%s/<C-r>///gc<Left><Left><Left>
 vnoremap <Leader><C-r> "zy:let @/=@z<CR>:set hlsearch<CR>:%s/<C-r>///gc<Left><Left><Left>
 
