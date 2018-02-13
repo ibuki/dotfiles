@@ -1,2 +1,2 @@
-[ -f ~/.zshrc.alias_public ] && source ~/.zshrc.alias_public
-[ -f ~/.zshrc.alias_private ] && source ~/.zshrc.alias_private
+[ -f ~/dotfiles/zshrc.alias_public ] && source ~/dotfiles/zshrc.alias_public
+[ -f ~/dotfiles/zshrc.alias_private ] && source ~/dotfiles/zshrc.alias_private

@@ -178,4 +178,4 @@ export PATH=$HOME/bin:$PATH
 
 
 #################### source the private setting files
-[ -f ~/.zshrc.mine ] && source ~/.zshrc.mine
+[ -f ~/dotfiles/zshrc.mine ] && source ~/dotfiles/zshrc.mine

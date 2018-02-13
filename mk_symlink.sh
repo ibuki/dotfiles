@@ -14,7 +14,6 @@ ln -s dotfiles/vimrc .vimrc
 ln -s dotfiles/vimshrc .vimshrc
 ln -s dotfiles/zshenv .zshenv
 ln -s dotfiles/zshrc .zshrc
-ln -s dotfiles/zshrc.alias_public .zshrc.alias_public
 ln -s dotfiles/vim .vim
 
 ln -s dotfiles/dein.toml .dein.toml
