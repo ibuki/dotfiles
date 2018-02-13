@@ -5,10 +5,11 @@ root: ~/.ghq/github.com/spark-x-lab/job-template
 
 windows:
   - jobt:
-      layout: main-vertical
+      layout: tiles
       panes:
         - #empty
         - #empty
+        - be rails c
   - jobt_server:
       layout: even-horizontal
       panes:
