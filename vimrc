@@ -175,6 +175,7 @@ nnoremap <C-e> $
 nnoremap <C-p> :bp<CR>
 nnoremap <C-n> :bn<CR>
 nnoremap <C-q><C-q> :bd<CR>
+nnoremap <C-q><C-f> :bp\|bd #<CR>
 
 " Move across windows
 nnoremap <C-j> <C-w>j
