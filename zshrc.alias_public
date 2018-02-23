@@ -53,21 +53,17 @@ function todo-today {
   FILENAME=todo_$DATE.md
   if [[ ! -f $FILENAME ]]; then
     PREVFILENAME=`ls -t | head -1`
-    echo "# $DATEのTODO" >> $FILENAME
+    cp $PREVFILENAME $FILENAME
     echo '' >> $FILENAME
-    echo '# これまで' >> $FILENAME
-    echo -n '#' >> $FILENAME
-    cat $PREVFILENAME >> $FILENAME
+    echo "<!-- $DATEのTODO -->" >> $FILENAME
     echo '' >> $FILENAME
-    echo '# これから' >> $FILENAME
-    echo '' >> $FILENAME
-    echo '- 昨日やったこと' >> $FILENAME
+    echo '# 昨日やったこと' >> $FILENAME
     echo '  - ' >> $FILENAME
-    echo '- 今日やること' >> $FILENAME
+    echo '# 今日やること' >> $FILENAME
     echo '  - ' >> $FILENAME
-    echo '- 困っていること' >> $FILENAME
+    echo '# 困っていること' >> $FILENAME
     echo '  - ' >> $FILENAME
-    echo '- その他共有事項' >> $FILENAME
+    echo '# その他共有事項' >> $FILENAME
     echo '  - ' >> $FILENAME
   fi
   nvim $FILENAME
