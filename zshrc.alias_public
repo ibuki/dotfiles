@@ -1,34 +1,5 @@
 alias where="command -v"
 alias j="jobs -l"
-alias -s txt=cat
-
-alias -s zip=zipinfo
-alias -s tgz=gzcat
-alias -s gz=gzcat
-alias -s tbz=bzcat
-alias -s bz2=bzcat
-alias -s java=lv
-alias -s c=lv
-alias -s h=lv
-alias -s C=lv
-alias -s cpp=lv
-alias -s sh=lv
-alias -s txt=lv
-alias -s xml=lv
-alias -s html=firefox
-alias -s xhtml=firefox
-alias -s gif=display
-alias -s jpg=display
-alias -s jpeg=display
-alias -s png=display
-alias -s bmp=display
-alias -s mp3=amarok
-alias -s m4a=amarok
-alias -s ogg=amarok
-alias -s mpg=svlc
-alias -s mpeg=svlc
-alias -s avi=svlc
-alias -s mp4v=svlc
 
 alias tmux='tmux -2'
 alias vi='nvim'
@@ -42,21 +13,36 @@ alias gh="open \`git remote get-url origin | sed -Ee 's#(ssh://)?(git@|git://)#h
 alias od='OVERCOMMIT_DISABLE=1'
 alias top='top -ocpu'
 alias ssh='if ! ssh-add -l >& /dev/null ; then ssh-add -t 12h ; fi ; ssh'
-alias t=todo-today
+alias clip="tr -d '\n' | pbcopy && pbpaste"
+alias t='mux tickets'
 alias tickets="cd ~/Dropbox/Tickets; ls -l"
+alias mv='mv -i'
+alias ..='cd ..'
+alias cp='cp -i'
 
 # functions
 
-function todo-today {
-  cd ~/Dropbox/Tickets
+function bool {
+  eval "
+  if [[ $@ ]] ; then
+    echo 'true'
+  else
+    echo 'false'
+  fi
+  "
+}
+
+function todotoday {
   DATE=`date +%y%m%d`
   FILENAME=todo_$DATE.md
   if [[ ! -f $FILENAME ]]; then
-    PREVFILENAME=`ls -t | head -1`
+    PREVFILENAME=`ls -t todo_*.md | head -1`
     cp $PREVFILENAME $FILENAME
     echo '' >> $FILENAME
     echo "<!-- $DATEのTODO -->" >> $FILENAME
     echo '' >> $FILENAME
+    echo '# お気持ち' >> $FILENAME
+    echo '  - ' >> $FILENAME
     echo '# 昨日やったこと' >> $FILENAME
     echo '  - ' >> $FILENAME
     echo '# 今日やること' >> $FILENAME
