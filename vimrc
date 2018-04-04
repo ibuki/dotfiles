@@ -219,6 +219,12 @@ vnoremap <Leader>r "zy:let @/=@z<CR>:set hlsearch<CR>:,$s/<C-r>///gc<Left><Left>
 nnoremap <Leader><C-r> "zyiw:let @/='\<'.@z.'\>'<CR>:set hlsearch<CR>:%s/<C-r>///gc<Left><Left><Left>
 vnoremap <Leader><C-r> "zy:let @/=@z<CR>:set hlsearch<CR>:%s/<C-r>///gc<Left><Left><Left>
 
+" vimdiff
+if &diff
+  map <Leader>h :diffget LOCAL<CR>
+  map <Leader>j :diffget BASE<CR>
+  map <Leader>l :diffget REMOTE<CR>
+endif
 " }}}
 
 

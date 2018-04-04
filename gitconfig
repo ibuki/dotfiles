@@ -7,6 +7,7 @@
   ff = only
 [merge]
   ff = false
+  tool = vimdiff2
 [push]
   default = simple
 [core]
