@@ -68,3 +68,11 @@ function todo-today {
   fi
   nvim $FILENAME
 }
+
+function newmux {
+  I=0
+  while [[ `tmux list-sessions` =~ w$I ]] ; do
+    I=`expr $I + 1`
+  done
+  tmuxinator start default -n w$I
+}

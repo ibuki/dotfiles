@@ -1,0 +1,16 @@
+# ~/.tmuxinator/default.yml
+
+name: default
+
+windows:
+  - coding:
+      layout: b258,248x90,0,0[249x54,0,0{162x54,0,0,0,86x54,163,0,2},249x36,0,55,3]
+      panes:
+        - #empty
+        - #empty
+        - #empty
+  - shell:
+      layout: even-horizontal
+      panes:
+        - #empty
+        - #empty

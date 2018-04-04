@@ -1,7 +1,7 @@
 # ~/.tmuxinator/jobt.yml
 
 name: jobt
-root: ~/.ghq/github.com/spark-x-lab/job-template
+root: ~/.ghq/github.com/reapra-technology/job-template
 
 windows:
   - jobt:
