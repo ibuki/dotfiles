@@ -19,6 +19,7 @@ alias tickets="cd ~/Dropbox/Tickets; ls -l"
 alias mv='mv -i'
 alias ..='cd ..'
 alias cp='cp -i'
+alias ports='lsof -i -P | grep "LISTEN"'
 
 # functions
 
