@@ -270,14 +270,6 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = 'kana/vim-smartchr'
-hook_add = '''
-  inoremap <expr> = smartchr#loop(' = ', '=', ' == ', ' === ')
-  inoremap <expr> , smartchr#one_of(', ', ',')
-  inoremap <expr> { smartchr#one_of('{', '#{')
-'''
-
-[[plugins]]
 repo = 'tmhedberg/matchit'
 
 [[plugins]]
@@ -292,6 +284,7 @@ hook_add = '''
   let g:user_emmet_settings = {
   \   'lang' : 'ja'
   \ }
+  let g:user_emmet_expandabbr_key = '<C-y><C-y>'
 '''
 
 [[plugins]]
@@ -424,6 +417,9 @@ hook_add = '''
 
 [[plugins]]
 repo = 'sheerun/vim-polyglot'
+hook_add = '''
+  let g:vue_disable_pre_processors = 1
+'''
 
 [[plugins]]
 repo = 'nathanaelkane/vim-indent-guides'
@@ -478,10 +474,17 @@ hook_add = '''
   let g:ale_linters = {
     \   'ruby': ['rubocop', 'ruby'],
     \   'javascript': ['eslint'],
+    \   'css': ['stylelint'],
+    \   'scss': ['stylelint'],
+    \ }
+
+  let g:ale_fixers = {
+    \   'javascript': ['eslint'],
     \ }
 
   nmap <silent> <C-l><C-k> <Plug>(ale_previous_wrap)
   nmap <silent> <C-l><C-j> <Plug>(ale_next_wrap)
+  nmap <silent> <C-l><C-p> <Plug>(ale_fix)
 '''
 # for vim: "pip3 install vim-vint" should be run
 
@@ -518,12 +521,6 @@ repo = 'majutsushi/tagbar'
 hook_add = '''
   nnoremap <F9> :TagbarToggle<CR>
 '''
-
-[[plugins]]
-repo = 'elzr/vim-json'
-
-# [[plugins]]
-# repo = 'bronson/vim-trailing-whitespace'
 
 [[plugins]]
 repo = 'osyo-manga/vim-precious'
@@ -599,6 +596,3 @@ repo = 'thinca/vim-qfreplace'
 
 [[plugins]]
 repo = 'captbaritone/better-indent-support-for-php-with-html'
-
-[[plugins]]
-repo = 'mattn/emmet-vim'
