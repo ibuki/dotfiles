@@ -13,6 +13,7 @@
 [core]
   editor = nvim
   excludesfile = ~/.gitignore_global
+  ignorecase = false
 [alias]
   c = commit -v
   o = checkout
