@@ -14,7 +14,7 @@ alias od='OVERCOMMIT_DISABLE=1'
 alias top='top -ocpu'
 alias ssh='if ! ssh-add -l >& /dev/null ; then ssh-add -t 12h ; fi ; ssh'
 alias clip="tr -d '\n' | pbcopy && pbpaste"
-alias t='mux tickets'
+alias t='cd ~/Dropbox/Tickets; todotoday'
 alias tickets="cd ~/Dropbox/Tickets; ls -l"
 alias mv='mv -i'
 alias ..='cd ..'
