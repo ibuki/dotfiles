@@ -419,6 +419,7 @@ hook_add = '''
 repo = 'sheerun/vim-polyglot'
 hook_add = '''
   let g:vue_disable_pre_processors = 1
+  autocmd BufRead,BufNewFile *.vue setlocal filetype=vue
 '''
 
 [[plugins]]
@@ -474,12 +475,17 @@ hook_add = '''
   let g:ale_linters = {
     \   'ruby': ['rubocop', 'ruby'],
     \   'javascript': ['eslint'],
+    \   'vue': ['eslint'],
     \   'css': ['stylelint'],
     \   'scss': ['stylelint'],
     \ }
 
   let g:ale_fixers = {
+    \   'ruby': ['rubocop'],
     \   'javascript': ['eslint'],
+    \   'vue': ['eslint'],
+    \   'css': ['stylelint'],
+    \   'scss': ['stylelint'],
     \ }
 
   nmap <silent> <C-l><C-k> <Plug>(ale_previous_wrap)
