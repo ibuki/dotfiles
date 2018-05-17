@@ -1,25 +1,36 @@
 #!/bin/bash
+force=$1
+
+function mk_symlink() {
+  local src=$1
+  local dist=$2
+  if [[ $force == 'force' || ( ! -f $dist && ! -d $dist ) ]]; then
+    ln -sfvn $src $dist
+  fi
+}
 
 cd ${HOME}
 
-ln -s dotfiles/agignore .agignore
-ln -s dotfiles/gitconfig .gitconfig
-ln -s dotfiles/gitignore_global .gitignore_global
-ln -s dotfiles/gvimrc .gvimrc
-ln -s dotfiles/iex.exs .iex.exs
-ln -s dotfiles/pryrc .pryrc
-ln -s dotfiles/tmux.conf .tmux.conf
-ln -s dotfiles/tmuxinator .tmuxinator
-ln -s dotfiles/vimrc .vimrc
-ln -s dotfiles/vimshrc .vimshrc
-ln -s dotfiles/zshenv .zshenv
-ln -s dotfiles/zshrc .zshrc
-ln -s dotfiles/vim .vim
+mk_symlink dotfiles/agignore .agignore
+mk_symlink dotfiles/gitconfig .gitconfig
+mk_symlink dotfiles/gitignore_global .gitignore_global
+mk_symlink dotfiles/gvimrc .gvimrc
+mk_symlink dotfiles/iex.exs .iex.exs
+mk_symlink dotfiles/pryrc .pryrc
+mk_symlink dotfiles/tmux.conf .tmux.conf
+mk_symlink dotfiles/tmuxinator .tmuxinator
+mk_symlink dotfiles/vimrc .vimrc
+mk_symlink dotfiles/zshenv .zshenv
+mk_symlink dotfiles/zshrc .zshrc
 
-ln -s dotfiles/dein.toml .dein.toml
-ln -s dotfiles/deinlazy.toml .deinlazy.toml
+mk_symlink dotfiles/dein.toml .dein.toml
+mk_symlink dotfiles/deinlazy.toml .deinlazy.toml
 
-# neovim
 mkdir -p ${HOME}/.config/nvim
-ln -snfv ${HOME}/.vim ${HOME}/.config/nvim/
-ln -snfv ${HOME}/.vimrc ${HOME}/.config/nvim/init.vim
+mk_symlink ${HOME}/.vim ${HOME}/.config/nvim/.vim
+mk_symlink ${HOME}/.vimrc ${HOME}/.config/nvim/init.vim
+
+mk_symlink dotfiles/lintrc/rubocop.yml .rubocop.yml
+mk_symlink dotfiles/lintrc/eslintrc .eslintrc
+mk_symlink dotfiles/lintrc/pug-lintrc .pug-lintrc
+mk_symlink dotfiles/lintrc/stylelintrc .stylelintrc
