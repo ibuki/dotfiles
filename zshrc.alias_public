@@ -1,5 +1,4 @@
 alias where="command -v"
-alias j="jobs -l"
 
 alias tmux='tmux -2'
 alias vi='nvim'

@@ -155,19 +155,24 @@ fi
 
 
 #################### cool-peco init
-FPATH="${FPATH}:${HOME}/.ghq/github.com/ryoppy/cool-peco"
-autoload -Uz cool-peco
-cool-peco
+if [ -d ${HOME}/.ghq/github.com/ryoppy/cool-peco  ]; then
+  FPATH="${FPATH}:${HOME}/.ghq/github.com/ryoppy/cool-peco"
+  autoload -Uz cool-peco
+  cool-peco
 
-bindkey '^r' cool-peco-history # ctrl+r
+  bindkey '^r' cool-peco-history # ctrl+r
 
-alias ff=cool-peco-filename-search
-alias gbb=cool-peco-git-checkout
-alias gll=cool-peco-git-log
-alias ta=cool-peco-tmux-session
-alias cg=cool-peco-ghq
-alias pps=cool-peco-ps
+  alias ff=cool-peco-filename-search
+  alias gbb=cool-peco-git-checkout
+  alias gll=cool-peco-git-log
+  alias ta=cool-peco-tmux-session
+  alias cg=cool-peco-ghq
+  alias pps=cool-peco-ps
+fi
 
+
+#################### autojump
+[ -f /usr/local/etc/profile.d/autojump.sh  ] && . /usr/local/etc/profile.d/autojump.sh
 
 #################### docker
 # if which docker-machine > /dev/null; then eval "$(docker-machine env default)"; fi
