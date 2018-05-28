@@ -34,3 +34,4 @@ mk_symlink dotfiles/lintrc/rubocop.yml .rubocop.yml
 mk_symlink dotfiles/lintrc/eslintrc .eslintrc
 mk_symlink dotfiles/lintrc/pug-lintrc .pug-lintrc
 mk_symlink dotfiles/lintrc/stylelintrc .stylelintrc
+mk_symlink ${HOME}/dotfiles/lintrc/yamllint ${HOME}/.config/yamllint
