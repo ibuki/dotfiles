@@ -1,4 +1,5 @@
 AllCops:
+  TargetRubyVersion: 2.5
   DisplayCopNames: true
   Include:
     - Rakefile
@@ -27,9 +28,5 @@ Naming/FileName:
   Exclude:
     - Gemfile
     - Guardfile
-Rails:
-  Enabled: true
-Rails/InverseOf:
-  Enabled: false
 Style/Documentation:
   Enabled: false
