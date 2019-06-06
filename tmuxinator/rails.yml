@@ -8,12 +8,13 @@ windows:
       panes:
         - #empty
         - gs
-        - be rails c
+        - #empty
   - server:
       layout: even-horizontal
       panes:
+        - webpack:
+          - bin/webpack-dev-server
         - rails_server:
-          - bin/webpack-dev-server &
           - be rails s
         - rails_console:
           - be rails c

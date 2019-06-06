@@ -1,6 +1,11 @@
 ### .gitignore_global
 
 .envrc
+.php_cs.cache
+.vscode
+stash/
+ignore/
+.solargraph.yml
 
 ### https://raw.github.com/github/gitignore/22a5eb3da72c0a224a179033e92722bdbf5a05ad/Global/Dropbox.gitignore
 
@@ -132,7 +137,7 @@ Session.vim
 .netrwhist
 *~
 # Auto-generated tag files
-tags
+# tags
 
 
 ### https://raw.github.com/github/gitignore/22a5eb3da72c0a224a179033e92722bdbf5a05ad/Global/Windows.gitignore

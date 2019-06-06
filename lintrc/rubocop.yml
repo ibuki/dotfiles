@@ -1,5 +1,9 @@
+require: rubocop-rspec
+inherit_mode:
+  merge:
+    - Exclude
+    - Include
 AllCops:
-  TargetRubyVersion: 2.5
   DisplayCopNames: true
   Include:
     - Rakefile
@@ -16,6 +20,8 @@ Bundler/OrderedGems:
     - Gemfile
 Metrics/LineLength:
   Max: 150
+  Exclude:
+    - spec/**/*
 Metrics/MethodLength:
   Max: 15
 Metrics/BlockLength:
@@ -24,9 +30,24 @@ Metrics/BlockLength:
     - spec/factories/*
     - spec/support/*
     - Guardfile
+    - lib/tasks/*
+Lint/NonLocalExitFromIterator:
+  Enabled: false
 Naming/FileName:
   Exclude:
     - Gemfile
     - Guardfile
+Rails:
+  Enabled: true
+Rails/InverseOf:
+  Enabled: false
+Rails/Delegate:
+  Enabled: false
 Style/Documentation:
+  Enabled: false
+RSpec/NestedGroups:
+  Enabled: false
+RSpec/ExampleLength:
+  Enabled: false
+RSpec/MultipleExpectations:
   Enabled: false

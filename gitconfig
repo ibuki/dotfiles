@@ -1,6 +1,6 @@
 [user]
   name = Ibuki Nakamura
-  email = ibuki.nakamura@reapra.sg
+  email = ibuki.nakamura@gmail.com
 [credenial]
   helper = osxkeychain
 [pull]
@@ -22,6 +22,8 @@
   p = pull
   pu = push
   puu = push -u
+  f = flow feature start
+  fp = flow feature publish
 [filter "lfs"]
   required = true
   clean = git-lfs clean -- %f

@@ -12,6 +12,7 @@ compinit -u
 
 #################### vi keybind on command line
 bindkey -e
+bindkey -r "^g"
 
 
 #################### LANG
@@ -148,6 +149,10 @@ export PATH=$HOME/Library/Python/2.7/bin:$PATH
 export PATH=$HOME/Library/Python/3.6/bin:$PATH
 
 
+#################### nodebrew
+export PATH=$HOME/.nodebrew/current/bin:$PATH
+
+
 #################### tmux
 if [ -f ~/dotfiles/tmuxinator.zsh ]; then
   source ~/dotfiles/tmuxinator.zsh
@@ -178,6 +183,10 @@ fi
 # if which docker-machine > /dev/null; then eval "$(docker-machine env default)"; fi
 
 
+#################### mysql5.7 for osx
+export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
+
+
 #################### original commands
 export PATH=$HOME/dotfiles/bin:$PATH
 export PATH=$HOME/bin:$PATH
@@ -185,3 +194,19 @@ export PATH=$HOME/bin:$PATH
 
 #################### source the private setting files
 [ -f ~/dotfiles/zshrc.mine ] && source ~/dotfiles/zshrc.mine
+
+# # tabtab source for serverless package
+# # uninstall by removing these lines or running `tabtab uninstall serverless`
+# [[ -f /Users/ibuki/.nodebrew/node/v8.11.3/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/ibuki/.nodebrew/node/v8.11.3/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
+# # tabtab source for sls package
+# # uninstall by removing these lines or running `tabtab uninstall sls`
+# [[ -f /Users/ibuki/.nodebrew/node/v8.11.3/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/ibuki/.nodebrew/node/v8.11.3/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
+
+# tabtab source for slss package
+# uninstall by removing these lines or running `tabtab uninstall slss`
+[[ -f /Users/ibuki/.nodebrew/node/v8.11.3/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/ibuki/.nodebrew/node/v8.11.3/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh
+###-tns-completion-start-###
+if [ -f /Users/ibuki/.tnsrc ]; then 
+    source /Users/ibuki/.tnsrc 
+fi
+###-tns-completion-end-###

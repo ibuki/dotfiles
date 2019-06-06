@@ -2,6 +2,9 @@
   "extends": ["stylelint-config-standard"],
   "plugins": ["stylelint-order"],
   "rules": {
-    "order/properties-alphabetical-order": true
+    "order/properties-alphabetical-order": true,
+    "at-rule-no-unknown": null,
+    "no-descending-specificity": null,
+    "declaration-block-single-line-max-declarations": null
   }
 }
