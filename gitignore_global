@@ -6,6 +6,7 @@
 stash/
 ignore/
 .solargraph.yml
+/public/uploads/tmp
 
 ### https://raw.github.com/github/gitignore/22a5eb3da72c0a224a179033e92722bdbf5a05ad/Global/Dropbox.gitignore
 
