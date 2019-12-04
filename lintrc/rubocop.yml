@@ -39,10 +39,6 @@ Naming/FileName:
     - Guardfile
 Rails:
   Enabled: true
-Rails/InverseOf:
-  Enabled: false
-Rails/Delegate:
-  Enabled: false
 Style/Documentation:
   Enabled: false
 RSpec/NestedGroups:
@@ -51,3 +47,16 @@ RSpec/ExampleLength:
   Enabled: false
 RSpec/MultipleExpectations:
   Enabled: false
+Style/AsciiComments:
+  Enabled: false
+Layout/EmptyLineAfterGuardClause:
+  Enabled: false
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: consistent_comma
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: consistent_comma
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: consistent_comma
+Naming/UncommunicativeMethodParamName:
+  Enabled: false
+
