@@ -9,6 +9,7 @@ alias gdh='git diff HEAD'
 alias gbdm='git branch -d `git branch --merged | grep -v \* | grep -v master | grep -v develop`'
 alias gcmt='git commit -m'
 alias gh="open \`git remote get-url origin | sed -Ee 's#(ssh://)?(git@|git://)#http://#' -e 's@com:@com/@'\`"
+alias gcd='cd `git rev-parse --show-toplevel`'
 alias od='OVERCOMMIT_DISABLE=1'
 alias top='top -ocpu'
 alias ssh='if ! ssh-add -l >& /dev/null ; then ssh-add -t 12h ; fi ; ssh'

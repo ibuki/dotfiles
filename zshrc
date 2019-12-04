@@ -78,6 +78,8 @@ function rprompt-git-current-branch {
 }
 GIT_STATUS='`rprompt-git-current-branch`'
 #RPROMPT='`rprompt-git-current-branch`'
+
+
 ########## git status
 
 setopt prompt_subst
@@ -149,30 +151,13 @@ export PATH=$HOME/Library/Python/2.7/bin:$PATH
 export PATH=$HOME/Library/Python/3.6/bin:$PATH
 
 
-#################### nodebrew
-export PATH=$HOME/.nodebrew/current/bin:$PATH
-
+#################### nodenv
+export PATH=$HOME/.nodenv/bin:$PATH
+eval "$(nodenv init -)"
 
 #################### tmux
 if [ -f ~/dotfiles/tmuxinator.zsh ]; then
   source ~/dotfiles/tmuxinator.zsh
-fi
-
-
-#################### cool-peco init
-if [ -d ${HOME}/.ghq/github.com/ryoppy/cool-peco  ]; then
-  FPATH="${FPATH}:${HOME}/.ghq/github.com/ryoppy/cool-peco"
-  autoload -Uz cool-peco
-  cool-peco
-
-  bindkey '^r' cool-peco-history # ctrl+r
-
-  alias ff=cool-peco-filename-search
-  alias gbb=cool-peco-git-checkout
-  alias gll=cool-peco-git-log
-  alias ta=cool-peco-tmux-session
-  alias cg=cool-peco-ghq
-  alias pps=cool-peco-ps
 fi
 
 
@@ -191,22 +176,10 @@ export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
 export PATH=$HOME/dotfiles/bin:$PATH
 export PATH=$HOME/bin:$PATH
 
+#################### flutter
+export PATH="$HOME/development/flutter/bin:$PATH"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 #################### source the private setting files
 [ -f ~/dotfiles/zshrc.mine ] && source ~/dotfiles/zshrc.mine
-
-# # tabtab source for serverless package
-# # uninstall by removing these lines or running `tabtab uninstall serverless`
-# [[ -f /Users/ibuki/.nodebrew/node/v8.11.3/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/ibuki/.nodebrew/node/v8.11.3/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
-# # tabtab source for sls package
-# # uninstall by removing these lines or running `tabtab uninstall sls`
-# [[ -f /Users/ibuki/.nodebrew/node/v8.11.3/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/ibuki/.nodebrew/node/v8.11.3/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
-
-# tabtab source for slss package
-# uninstall by removing these lines or running `tabtab uninstall slss`
-[[ -f /Users/ibuki/.nodebrew/node/v8.11.3/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/ibuki/.nodebrew/node/v8.11.3/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh
-###-tns-completion-start-###
-if [ -f /Users/ibuki/.tnsrc ]; then 
-    source /Users/ibuki/.tnsrc 
-fi
-###-tns-completion-end-###
