@@ -57,6 +57,4 @@ Style/TrailingCommaInArrayLiteral:
   EnforcedStyleForMultiline: consistent_comma
 Style/TrailingCommaInArguments:
   EnforcedStyleForMultiline: consistent_comma
-Naming/UncommunicativeMethodParamName:
-  Enabled: false
 
