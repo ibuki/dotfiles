@@ -14,7 +14,6 @@ cd ${HOME}
 mk_symlink dotfiles/agignore .agignore
 mk_symlink dotfiles/gitconfig .gitconfig
 mk_symlink dotfiles/gitignore_global .gitignore_global
-mk_symlink dotfiles/gvimrc .gvimrc
 mk_symlink dotfiles/iex.exs .iex.exs
 mk_symlink dotfiles/pryrc .pryrc
 mk_symlink dotfiles/tmux.conf .tmux.conf
@@ -23,11 +22,7 @@ mk_symlink dotfiles/vimrc .vimrc
 mk_symlink dotfiles/zshenv .zshenv
 mk_symlink dotfiles/zshrc .zshrc
 
-mk_symlink dotfiles/dein.toml .dein.toml
-mk_symlink dotfiles/deinlazy.toml .deinlazy.toml
-
 mkdir -p ${HOME}/.config/nvim
-mk_symlink ${HOME}/.vim ${HOME}/.config/nvim/.vim
 mk_symlink ${HOME}/.vimrc ${HOME}/.config/nvim/init.vim
 
 mk_symlink dotfiles/lintrc/rubocop.yml .rubocop.yml
