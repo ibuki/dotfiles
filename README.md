@@ -1,17 +1,42 @@
 # Dotfiles
 
-dotfilesです。
+dotfiles + 環境セットアップ手順です。
 - 過去の経歴
   - 会社の先輩が作っていたものをもらう( jp-ryuji/dotfiles )
     - Railsがメインの人。zsh+tmuxinator+nvimでガッツリ開発
-  - アプデーとしつつ、ほとんどそのまま使う
-  - メインのエディタをVSCodeにしたのでほったらかす
+  - アップデートしつつ、ほとんどそのまま使う
+  - メインのエディタをVSCodeにしたのでしばらくほったらかす
   - だったらシンプルにしてしまおうとして設定を絞ろうとする。fishも試していく <- いまここ
 
 # 概要
+
 長くて大変ですがやると便利です。途中までやって止めるとエラーがたくさん出るようになるので最後までやりましょう、
 macOSでもcentos7でもできました。この手順はmacOS用です。
 この手順を書いたあとは試していないのでうまく行かなかったら直してください。
+
+# 想定する環境
+
+- macOS Catalina
+- iTerm2
+- Clipy
+- VSCode
+  - vscode-vim
+- homebrew
+  - python # pyenvしない
+  - python2 # pyenvしない
+  - nodenv
+    - yarn
+  - rbenv
+  - fzf
+  - ghq
+  - zsh
+  - neovim
+  - direnv
+  - the_sliver_searcher
+  - tmux
+    - tmuxinator
+
+# セットアップ手順(古い内容です)
 
 ## 流れ
 
