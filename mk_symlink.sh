@@ -14,7 +14,6 @@ cd ${HOME}
 mk_symlink dotfiles/agignore .agignore
 mk_symlink dotfiles/gitconfig .gitconfig
 mk_symlink dotfiles/gitignore_global .gitignore_global
-mk_symlink dotfiles/iex.exs .iex.exs
 mk_symlink dotfiles/pryrc .pryrc
 mk_symlink dotfiles/tmux.conf .tmux.conf
 mk_symlink dotfiles/tmuxinator .tmuxinator
