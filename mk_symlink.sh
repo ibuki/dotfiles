@@ -20,8 +20,13 @@ mk_symlink dotfiles/tmuxinator .tmuxinator
 mk_symlink dotfiles/zshenv .zshenv
 mk_symlink dotfiles/zshrc .zshrc
 
-mkdir -p .config/nvim
-mk_symlink dotfiles/vimrc .config/nvim/init.vim
+mkdir .config
+
+mkdir .config/nvim
+mk_symlink dotfiles/config/nvim/init.vim .config/nvim/init.vim
+
+mkdir .config/fish
+mk_symlink dotfiles/config/fish/config.fish .config/fish/config.fish
 
 mk_symlink dotfiles/lintrc/rubocop.yml .rubocop.yml
 mk_symlink dotfiles/lintrc/eslintrc .eslintrc
