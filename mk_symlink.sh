@@ -17,15 +17,14 @@ mk_symlink dotfiles/gitignore_global .gitignore_global
 mk_symlink dotfiles/pryrc .pryrc
 mk_symlink dotfiles/tmux.conf .tmux.conf
 mk_symlink dotfiles/tmuxinator .tmuxinator
-mk_symlink dotfiles/vimrc .vimrc
 mk_symlink dotfiles/zshenv .zshenv
 mk_symlink dotfiles/zshrc .zshrc
 
-mkdir -p ${HOME}/.config/nvim
-mk_symlink ${HOME}/.vimrc ${HOME}/.config/nvim/init.vim
+mkdir -p .config/nvim
+mk_symlink dotfiles/vimrc .config/nvim/init.vim
 
 mk_symlink dotfiles/lintrc/rubocop.yml .rubocop.yml
 mk_symlink dotfiles/lintrc/eslintrc .eslintrc
 mk_symlink dotfiles/lintrc/pug-lintrc .pug-lintrc
 mk_symlink dotfiles/lintrc/stylelintrc .stylelintrc
-mk_symlink ${HOME}/dotfiles/lintrc/yamllint ${HOME}/.config/yamllint
+mk_symlink dotfiles/lintrc/yamllint .config/yamllint
