@@ -1,35 +1,27 @@
-#!/bin/bash
-force=$1
-
-function mk_symlink() {
-  local src=$1
-  local dist=$2
-  if [[ $force == 'force' || ( ! -f $dist && ! -d $dist ) ]]; then
-    ln -sfvn $src $dist
-  fi
-}
+#!/bin/bash -eux
 
 cd ${HOME}
 
-mk_symlink dotfiles/agignore .agignore
-mk_symlink dotfiles/gitconfig .gitconfig
-mk_symlink dotfiles/gitignore_global .gitignore_global
-mk_symlink dotfiles/pryrc .pryrc
-mk_symlink dotfiles/tmux.conf .tmux.conf
-mk_symlink dotfiles/tmuxinator .tmuxinator
-mk_symlink dotfiles/zshenv .zshenv
-mk_symlink dotfiles/zshrc .zshrc
-
+# set up directories
 mkdir .config
-
 mkdir .config/nvim
-mk_symlink dotfiles/config/nvim/init.vim .config/nvim/init.vim
-
 mkdir .config/fish
-mk_symlink dotfiles/config/fish/config.fish .config/fish/config.fish
+mkdir .config/yamllint
 
-mk_symlink dotfiles/lintrc/rubocop.yml .rubocop.yml
-mk_symlink dotfiles/lintrc/eslintrc .eslintrc
-mk_symlink dotfiles/lintrc/pug-lintrc .pug-lintrc
-mk_symlink dotfiles/lintrc/stylelintrc .stylelintrc
-mk_symlink dotfiles/lintrc/yamllint .config/yamllint
+# create symlink
+
+ln -sfvn dotfiles/agignore $HOME/.agignore
+ln -sfvn dotfiles/gitconfig $HOME/.gitconfig
+ln -sfvn dotfiles/gitignore_global $HOME/.gitignore_global
+ln -sfvn dotfiles/pryrc $HOME/.pryrc
+ln -sfvn dotfiles/tmux.conf $HOME/.tmux.conf
+ln -sfvn dotfiles/tmuxinator $HOME/.tmuxinator
+ln -sfvn dotfiles/zshenv $HOME/.zshenv
+ln -sfvn dotfiles/zshrc $HOME/.zshrc
+ln -sfvn dotfiles/rubocop.yml $HOME/.rubocop.yml
+ln -sfvn dotfiles/eslintrc $HOME/.eslintrc
+ln -sfvn dotfiles/pug-lintrc $HOME/.pug-lintrc
+ln -sfvn dotfiles/stylelintrc $HOME/.stylelintrc
+ln -sfvn dotfiles/config/yamllint/config $HOME/.config/yamllint/config
+ln -sfvn dotfiles/config/nvim/init.vim $HOME/.config/nvim/init.vim
+ln -sfvn dotfiles/config/fish/config.fish $HOME/.config/fish/config.fish
