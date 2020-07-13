@@ -35,13 +35,17 @@ alias vim='nvim'
 alias be='bundle exec'
 alias gs='git status'
 alias gdh='git diff HEAD'
-alias gbdm='git branch -d `git branch --merged | grep -v \* | grep -v master | grep -v develop`'
+alias gbdm='git branch -d (git branch --merged | grep -v \* | grep -v master | grep -v develop)'
 alias gcmt='git commit -m'
-alias gh="open \`git remote get-url origin | sed -Ee 's#(ssh://)?(git@|git://)#http://#' -e 's@com:@com/@'\`"
-alias gcd='cd `git rev-parse --show-toplevel`'
+alias gh="open (git remote get-url origin | sed -Ee 's#(ssh://)?(git@|git://)#http://#' -e 's@com:@com/@')"
+alias gcd='cd (git rev-parse --show-toplevel)'
 alias od='OVERCOMMIT_DISABLE=1'
 alias top='top -ocpu'
 alias clip="tr -d '\n' | pbcopy && pbpaste"
 alias mv='mv -i'
 alias cp='cp -i'
 alias ports='lsof -i -P | grep "LISTEN"'
+
+# key bindings
+# prevent Ctrl-D to exit
+bind \cd delete-char
