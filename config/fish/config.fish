@@ -45,6 +45,7 @@ alias clip="tr -d '\n' | pbcopy && pbpaste"
 alias mv='mv -i'
 alias cp='cp -i'
 alias ports='lsof -i -P | grep "LISTEN"'
+alias slackpost="curl -X POST -d \"{'text': '<@U011Y7LFYV8> done'}\" https://hooks.slack.com/services/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"
 
 # key bindings
 # prevent Ctrl-D to exit
