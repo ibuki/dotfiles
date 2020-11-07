@@ -183,6 +183,3 @@ export PATH="$HOME/development/flutter/bin:$PATH"
 
 #################### use openssl from homebrew
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
-
-#################### source the private setting files
-[ -f ~/dotfiles/zshrc.mine ] && source ~/dotfiles/zshrc.mine
