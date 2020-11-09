@@ -3,7 +3,7 @@ set -x EDITOR nvim
 
 # --- Path
 set -x PATH $HOME/Library/Python/2.7/bin $PATH
-set -x PATH $HOME/Library/Python/3.7/bin $PATH
+set -x PATH $HOME/Library/Python/3.9/bin $PATH
 set -x PATH /usr/local/opt/mysql@5.7/bin $PATH
 set -x GOPATH $HOME/.go
 set -x PATH $GOPATH/bin $PATH
