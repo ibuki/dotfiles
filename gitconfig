@@ -1,5 +1,5 @@
 [user]
-  name = Ibuki Nakamura
+  name = Ibuki Suzuki
   email = ibuki.nakamura@gmail.com
 [credenial]
   helper = osxkeychain
@@ -14,7 +14,7 @@
   editor = nvim
   excludesfile = ~/.gitignore_global
   ignorecase = false
-	quotepath = false
+  quotepath = false
 [alias]
   c = commit -v
   o = checkout
@@ -32,3 +32,5 @@
   process = git-lfs filter-process
 [ghq "https://gitlab.com"]
   vcs = git
+[init]
+  defaultBranch = master
