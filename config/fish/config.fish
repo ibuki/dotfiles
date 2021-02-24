@@ -35,6 +35,7 @@ alias vim='nvim'
 alias be='bundle exec'
 alias gs='git status'
 alias gdh='git diff HEAD'
+alias gds='git diff --staged'
 alias gbdm="git branch -d (git branch --merged | grep -v \* | grep -v master | grep -v develop | sed 's/ //g')"
 alias gcmt='git commit -m'
 alias gh="open (git remote get-url origin | sed -Ee 's#(ssh://)?(git@|git://)#http://#' -e 's@com:@com/@')"
