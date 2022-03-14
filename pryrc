@@ -10,8 +10,8 @@ Pry.config.prompt = Pry::Prompt.new(
   [
     proc do |obj, nest_level, _|
       prompt = ''
-      prompt << "#{Rails.version}@" if defined?(Rails)
-      prompt << RUBY_VERSION.to_s
+      prompt += "#{Rails.version}@" if defined?(Rails)
+      prompt += RUBY_VERSION.to_s
       "#{prompt} (#{obj}:#{nest_level})> "
     end
   ]
@@ -26,7 +26,13 @@ Pry.config.commands.alias_command '.clr', '.clear'
 if defined? AwesomePrint
   begin
     require 'awesome_print'
-    Pry.config.print = proc { |output, value| Pry::Helpers::BaseHelpers.stagger_output("=> #{value.ai}", output) }
+    Pry.config.print = proc do |output, value|
+      begin
+        Pry::Helpers::BaseHelpers.stagger_output("=> #{value.ai}", output)
+      rescue
+        output.puts value.ai
+      end
+    end
     # Pry.config.print = proc { |output, value| output.puts value.ai } # without paging
   rescue LoadError => e
     puts 'no awesome_print :('
