@@ -22,7 +22,6 @@ set timeout timeoutlen=1000 ttimeoutlen=50
 set fileencoding=utf-8                        " Encoding on save
 set fileencodings=ucs-boms,utf-8,euc-jp,cp932 " Char code detection on read
 set fileformats=unix,dos,mac                  " LINE FEED
-set ambiwidth=double                          " UTF-8の□や○カーソル位置がずれないようにする
 
 " Search
 set nowrapscan                  " ファイルの最後まで検索したら検索をやめる
@@ -105,18 +104,18 @@ Plug 'justinmk/vim-sneak'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
 call plug#end()
-
 
 
 " Key map settings
 let g:mapleader = "\<Space>"
 
 " Move across buffers
-nnoremap <C-p> :bp<CR>
-nnoremap <C-n> :bn<CR>
-nnoremap <C-q><C-q> :bd<CR>
-nnoremap <C-q><C-f> :bp\|bd #<CR>
+nnoremap <C-p> :bp<CR> " 前のタブ
+nnoremap <C-n> :bn<CR> " 次のタブ
+nnoremap <C-q> :bd<CR> " タブを閉じる
 
 " Move across windows
 nnoremap <C-j> <C-w>j
@@ -159,4 +158,4 @@ nnoremap <Leader>O :Files<CR>
 
 " Color
 colorscheme badwolf " default color scheme
-highlight Normal guibg=NONE ctermbg=NONE
+highlight Normal guibg=NONE ctermbg=NONE " 背景色は使用しないことで透過に対応

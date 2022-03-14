@@ -2,12 +2,17 @@
 set -x EDITOR nvim
 
 # --- Path
+set -x PATH /usr/local/sbin $PATH
 set -x PATH $HOME/Library/Python/2.7/bin $PATH
 set -x PATH $HOME/Library/Python/3.9/bin $PATH
 set -x PATH /usr/local/opt/mysql@5.7/bin $PATH
 set -x GOPATH $HOME/.go
 set -x PATH $GOPATH/bin $PATH
 set -x PATH $HOME/.nodenv/bin $PATH
+set -x PATH $HOME/dev/flutter/bin $PATH
+
+# google-cloud-sdk
+source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.fish.inc"
 
 # --- Styling
 # remove right prompt
@@ -35,6 +40,7 @@ alias vim='nvim'
 alias be='bundle exec'
 alias gs='git status'
 alias gdh='git diff HEAD'
+alias gds='git diff --staged'
 alias gbdm="git branch -d (git branch --merged | grep -v \* | grep -v master | grep -v develop | sed 's/ //g')"
 alias gcmt='git commit -m'
 alias gh="open (git remote get-url origin | sed -Ee 's#(ssh://)?(git@|git://)#http://#' -e 's@com:@com/@')"

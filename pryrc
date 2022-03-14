@@ -1,17 +1,24 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
 Pry.config.color = true
-Pry.config.editor = "vim"
+Pry.config.editor = 'vim'
 
-Pry.config.prompt = proc do |obj, level, _|
-  prompt = ""
-  prompt << "#{Rails.version}@" if defined?(Rails)
-  prompt << "#{RUBY_VERSION}"
-  "#{prompt} (#{obj})> "
-end
+Pry.config.prompt = Pry::Prompt.new(
+  'custom',
+  'my custom prompt',
+  [
+    proc do |obj, nest_level, _|
+      prompt = ''
+      prompt += "#{Rails.version}@" if defined?(Rails)
+      prompt += RUBY_VERSION.to_s
+      "#{prompt} (#{obj}:#{nest_level})> "
+    end
+  ]
+)
 
 ## Alias
-Pry.config.commands.alias_command "lM", "ls -M"
+Pry.config.commands.alias_command 'lM', 'ls -M'
 Pry.config.commands.alias_command 'w', 'whereami'
 Pry.config.commands.alias_command '.clr', '.clear'
 
@@ -19,11 +26,17 @@ Pry.config.commands.alias_command '.clr', '.clear'
 if defined? AwesomePrint
   begin
     require 'awesome_print'
-    Pry.config.print = proc { |output, value| Pry::Helpers::BaseHelpers.stagger_output("=> #{value.ai}", output) }
+    Pry.config.print = proc do |output, value|
+      begin
+        Pry::Helpers::BaseHelpers.stagger_output("=> #{value.ai}", output)
+      rescue
+        output.puts value.ai
+      end
+    end
     # Pry.config.print = proc { |output, value| output.puts value.ai } # without paging
-  rescue LoadError => err
-    puts "no awesome_print :("
-    puts err
+  rescue LoadError => e
+    puts 'no awesome_print :('
+    puts e
   end
 end
 
@@ -33,8 +46,8 @@ if defined? Hirb
     def enable_output_method
       @output_method = true
       @old_print = Pry::DEFAULT_PRINT
-      Pry.config.print = proc do |output, value, _pry_|
-        Hirb::View.view_or_page_output(value) || @old_print.call(output, value, _pry_)
+      Pry.config.print = proc do |output, value, pry|
+        Hirb::View.view_or_page_output(value) || @old_print.call(output, value, pry)
       end
     end
 
