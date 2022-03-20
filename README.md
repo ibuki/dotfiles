@@ -8,6 +8,8 @@ dotfiles + 環境セットアップ手順です。
   - メインのエディタをVSCodeにしたのでしばらくほったらかす
   - だったらシンプルにしてしまおうとして設定を絞る
   - コマンドを書く時に読みやすくしたいのでfishにする
+  - M1 Mac買った
+  - fish記法が嫌なのでzshに戻す
 
 # 概要
 
@@ -17,7 +19,7 @@ macOSでもcentos7でもできました。この手順はmacOS用です。
 
 # 想定する環境
 
-- macOS Catalina
+- macOS Monterey
 - 英語キーボード
   - Karabina-Elements
 - iTerm2
@@ -26,17 +28,17 @@ macOSでもcentos7でもできました。この手順はmacOS用です。
 - VSCode
   - vscode-vim
 - homebrew
-  - python # pyenvしない あまり使っていない
-  - python2 # pyenvしない あまり使っていない
+  - python3 # 使っていない
   - nodenv
     - yarn
   - rbenv
   - fzf
   - ghq
-  - fish
+  - zsh
+    - enhancd
   - neovim # 今はあまり使っていない
   - direnv
-  - the_sliver_searcher
+  - ripgrep
   - tmux
 
 # セットアップ手順(古い内容です)
@@ -45,17 +47,18 @@ macOSでもcentos7でもできました。この手順はmacOS用です。
 
 - rbenv
 - go
-- fish, fish用ツールの設定
+- zsh, zsh用ツールの設定
 - 設定ファイルのインストール
 - tmux
-- vscodeでsettings syncを実行
+- nodenv
+- vscodeでsettings syncを実行
 
 ## 手順
 
 ### brew
 
 ```
-$ brew install neovim cmake boost icu4c rbenv ruby-build python python3 fish golang direnv the_silver_searcher reattach-to-user-namespace fzf ghq yarn tmux lv
+$ brew install neovim rbenv ruby-build python3 golang direnv reattach-to-user-namespace fzf ghq tmux lv ripgrep fd jq yq gibo nkf
 ```
 
 ### rbenv
@@ -63,9 +66,24 @@ $ brew install neovim cmake boost icu4c rbenv ruby-build python python3 fish gol
 ```
 $ export PATH=$HOME/.rbenv/bin:$PATH
 $ eval "$(rbenv init -)"
-$ rbenv install 2.7.2 # 最新
-$ rbenv local 2.7.2
+$ rbenv install 3.1.1 # 最新
+$ rbenv global 3.1.1
 $ gem install bundler neovim rubocop
+```
+
+### nodenv
+
+ref: https://qiita.com/1000ch/items/41ea7caffe8c42c5211c
+
+```
+$ git clone git://github.com/nodenv/nodenv.git ~/.nodenv
+$ export PATH="$HOME/.nodenv/bin:$PATH"
+$ eval "$(nodenv init -)"
+$ git clone https://github.com/nodenv/node-build.git ~/.nodenv/plugins/node-build
+$ git clone https://github.com/nodenv/node-build-update-defs.git ~/.nodenv/plugins/node-build-update-defs
+$ nodenv update-version-defs
+$ nodenv install 16.14.0 # 最新
+$ nodenv global 16.14.0
 ```
 
 
@@ -76,13 +94,12 @@ $ export GOPATH=$HOME/.go
 $ export PATH=$HOME/.go/bin:$PATH
 ```
 
-### fish, fish用ツールの設定
+### zsh
+
+zplugをインストール
 
 ```
-$ sudo sh -c "echo '/usr/local/bin/fish' >> /etc/shells"
-$ chsh -s /usr/local/bin/fish
-$ fish
-$ curl -sL git.io/fisher | source && fisher install jorgebucaran/fisher
+$ curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 ```
 
 ### 設定ファイルのインストール
@@ -126,7 +143,5 @@ https://gist.github.com/ibuki/f0d1132faf102460e4f7625d6381102a
 ## 参考サイト
 
 [rbenvのインストール手順](https://qiita.com/issobero/items/e0443b79da117ed48294)
-
-[pyenvのインストール手順](https://qiita.com/1000ch/items/93841f76ea52551b6a97)
 
 https://github.com/zchee/deoplete-jedi/wiki/Setting-up-Python-for-Neovim
