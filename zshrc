@@ -1,13 +1,26 @@
+#################### homebrew
+eval $(/opt/homebrew/bin/brew shellenv)
+
+#################### zplug
+source /opt/homebrew/opt/zplug/init.zsh
+
+zplug "zsh-users/zsh-autosuggestions"
+zplug "zsh-users/zsh-completions"
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
+zplug "mafredri/zsh-async", from:github
+zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
+
+if ! zplug check --verbose; then
+  printf 'Install? [y/N]: '
+  if read -q; then
+    echo; zplug install
+  fi
+fi
+zplug load
+
 #################### for neovim
 export EDITOR=nvim
 export XDG_CONFIG_HOME=$HOME/.config
-
-
-#################### complition
-fpath=(/usr/local/share/zsh-completions $fpath)
-
-autoload -Uz compinit
-compinit -u
 
 
 #################### vi keybind on command line
@@ -25,7 +38,6 @@ esac
 
 
 #################### setopt
-setopt auto_cd
 setopt auto_pushd
 setopt complete_aliases
 setopt correct
@@ -47,64 +59,12 @@ setopt ignore_eof
 autoload colors
 colors
 
-########## git status
-setopt prompt_subst
-autoload -Uz VCS_INFO_get_data_git; VCS_INFO_get_data_git 2> /dev/null
-
-function rprompt-git-current-branch {
-  local name st color gitdir action
-  if [[ "$PWD" =~ '/¥.git(/.*)?$' ]]; then
-    return
-  fi
-  name=$(basename "`git symbolic-ref HEAD 2> /dev/null`")
-  if [[ -z $name ]]; then
-    return
-  fi
-
-  gitdir=`git rev-parse --git-dir 2> /dev/null`
-  action=`VCS_INFO_git_getaction "$gitdir"` && action="($action)"
-
-  st=`git status 2> /dev/null`
-  if [[ -n `echo "$st" | grep "^nothing to"` ]]; then
-    color=%F{green}
-  elif [[ -n `echo "$st" | grep "^nothing added"` ]]; then
-    color=%F{yellow}
-  elif [[ -n `echo "$st" | grep "^# Untracked"` ]]; then
-    color=%B%F{red}
-  else
-     color=%F{red}
-  fi
-  echo "$color$name$action%f%b "
-}
-GIT_STATUS='`rprompt-git-current-branch`'
-#RPROMPT='`rprompt-git-current-branch`'
-
-
-########## git status
-
-setopt prompt_subst
-local p_rshst=""
-if [[ -n "${REMOTEHOST}${SSH_CONNECTION}" ]]; then
-  local rhost=`who ami i | sed 's/.*(\(.*\)).*/\1/'`
-  rhost=${rhost#localhost:}
-  rhost=${rhost%%.*}
-  p_rhst="%B%F{yellow}($rhost)%f%b"
-fi
-
-local p_cdir="%B%F{red}%n%F{yellow}@%m%F{cyan}[%~] ${GIT_STATUS}%f%b"$'\n'
-local p_info="%B%F{green}${WINDOW:+"[$WINDOW]"}%f%b"
-local p_mark="%B%(?,%F{green},%F{red})%(!,#,$)%f%b"
-PROMPT="$p_cdir$p_rhst$p_info$p_mark "
-PROMPT2="(%_) %(!,#,$) "
-SPROMPT="'%r' correct? [n,y,a,e]: "
-
 
 #################### history
 HISTFILE=~/.zsh_history
 HISTSIZE=100000
 SAVEHIST=100000
 setopt hist_ignore_dups
-#setopt share_history
 
 
 #################### set history search keys
@@ -115,30 +75,12 @@ bindkey "^P" history-beginning-search-backward-end
 bindkey "^N" history-beginning-search-forward-end
 
 
-#################### predict
-##autoload predict-on
-##predict-on
-
-
 #################### direnv
-eval "$(/usr/local/bin/direnv hook zsh)"
+eval "$(/opt/homebrew/bin/direnv hook zsh)"
 
 
-#################### gcloud
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f ~/google-cloud-sdk/path.zsh.inc ]; then
-  source ~/google-cloud-sdk/path.zsh.inc
-fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f ~/google-cloud-sdk/completion.zsh.inc ]; then
-  source ~/google-cloud-sdk/completion.zsh.inc
-fi
-
-
-#################### rbenv
-export PATH=$HOME/.rbenv/bin:$PATH
-eval "$(rbenv init - zsh)"
+#################### anyenv
+eval "$(anyenv init -)"
 
 
 #################### gopath
@@ -146,40 +88,14 @@ export GOPATH=$HOME/.go
 export PATH=$HOME/.go/bin:$PATH
 
 
-#################### python
-export PATH=$HOME/Library/Python/2.7/bin:$PATH
-export PATH=$HOME/Library/Python/3.7/bin:$PATH
-
-
-#################### nodenv
-export PATH=$HOME/.nodenv/bin:$PATH
-eval "$(nodenv init -)"
-
-#################### tmux
-if [ -f ~/dotfiles/tmuxinator.zsh ]; then
-  source ~/dotfiles/tmuxinator.zsh
-fi
-
-
-#################### autojump
-[ -f /usr/local/etc/profile.d/autojump.sh  ] && . /usr/local/etc/profile.d/autojump.sh
-
-#################### docker
-# if which docker-machine > /dev/null; then eval "$(docker-machine env default)"; fi
-
-
-#################### mysql5.7 for osx
-export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
-
-
 #################### original commands
 export PATH=$HOME/dotfiles/bin:$PATH
 export PATH=$HOME/bin:$PATH
 
-#################### flutter
-export PATH="$HOME/development/flutter/bin:$PATH"
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+#################### fzf
+[ -f ~/dotfiles/fzf.zsh ] && source ~/dotfiles/fzf.zsh
 
-#################### use openssl from homebrew
-export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
+
+#################### z
+[ -f /opt/homebrew/etc/profile.d/z.sh ] && source /opt/homebrew/etc/profile.d/z.sh

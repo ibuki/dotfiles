@@ -82,6 +82,10 @@ autocmd CursorHold * call s:AutoWriteIfPossible()
 filetype plugin indent on
 syntax enable
 
+" Disable python2
+let g:loaded_python_provider = 0
+let g:loaded_perl_provider = 0
+
 " Plugins
 call plug#begin(stdpath('data') . '/plugged')
 Plug 'tpope/vim-surround'

@@ -1,5 +1,4 @@
 alias where="command -v"
-
 alias tmux='tmux -2'
 alias vi='nvim'
 alias vim='nvim'
@@ -14,12 +13,13 @@ alias od='OVERCOMMIT_DISABLE=1'
 alias top='top -ocpu'
 alias ssh='if ! ssh-add -l >& /dev/null ; then ssh-add -t 12h ; fi ; ssh'
 alias clip="tr -d '\n' | pbcopy && pbpaste"
-alias t='cd ~/Dropbox/Tickets; todotoday'
-alias tickets="cd ~/Dropbox/Tickets; ls -l"
 alias mv='mv -i'
-alias ..='cd ..'
 alias cp='cp -i'
 alias ports='lsof -i -P | grep "LISTEN"'
+alias dc='docker compose'
+alias dcr='dc run --rm'
+alias dce='dc exec'
+alias dcu='dc up'
 
 # functions
 
@@ -33,31 +33,6 @@ function bool {
   "
 }
 
-function todotoday {
-  DATE=`date +%y%m%d`
-  FILENAME=todo_$DATE.md
-  if [[ ! -f $FILENAME ]]; then
-    PREVFILENAME=`ls -t todo_*.md | head -1`
-    cp $PREVFILENAME $FILENAME
-    echo '' >> $FILENAME
-    echo "<!-- $DATEのTODO -->" >> $FILENAME
-    echo '' >> $FILENAME
-    echo '# お気持ち' >> $FILENAME
-    echo '  - ' >> $FILENAME
-    echo '# 昨日やったこと' >> $FILENAME
-    echo '  - ' >> $FILENAME
-    echo '# 今日やること' >> $FILENAME
-    echo '  - ' >> $FILENAME
-    echo '# 待ち・残存タスク' >> $FILENAME
-    echo '  - ' >> $FILENAME
-    echo '# 困っていること' >> $FILENAME
-    echo '  - ' >> $FILENAME
-    echo '# その他共有事項' >> $FILENAME
-    echo '  - ' >> $FILENAME
-  fi
-  nvim $FILENAME
-}
-
 function newmux {
   I=0
   while [[ `tmux list-sessions` =~ w$I ]] ; do
@@ -69,4 +44,3 @@ function newmux {
 function sortdiff {
   diff <(sort $1) <(sort $2)
 }
-
