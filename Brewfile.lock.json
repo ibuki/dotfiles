@@ -8,7 +8,7 @@
         "revision": "6485824af21c46bfdf2136227c5ddaeaee543bff"
       },
       "homebrew/core": {
-        "revision": "70c383420bb63a0f1b05bbe6259396b4e8498880"
+        "revision": "dfa90b9e5721c7ec31a465bee8c33ecd317322c4"
       },
       "homebrew/services": {
         "revision": "3fbd50aef0d70b690ffbc8488bb3f2210f13719b"
@@ -1092,6 +1092,12 @@
         "options": {
           "full_name": "font-inconsolata-for-powerline-bold"
         }
+      },
+      "insomnia": {
+        "version": "2022.2.1",
+        "options": {
+          "full_name": "insomnia"
+        }
       }
     },
     "mas": {
@@ -1166,7 +1172,7 @@
       "monterey": {
         "HOMEBREW_VERSION": "3.4.3",
         "HOMEBREW_PREFIX": "/opt/homebrew",
-        "Homebrew/homebrew-core": "70c383420bb63a0f1b05bbe6259396b4e8498880",
+        "Homebrew/homebrew-core": "dfa90b9e5721c7ec31a465bee8c33ecd317322c4",
         "CLT": "13.3.0.0.1.1645755326",
         "Xcode": "13.3",
         "macOS": "12.3"

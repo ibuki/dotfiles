@@ -1,4 +1,3 @@
-# Brewfile更新方法: brew bundle dump --force
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/cask-fonts"
@@ -37,6 +36,7 @@ cask "fluid"
 cask "font-inconsolata-for-powerline"
 cask "font-inconsolata-for-powerline-bold"
 cask "google-chrome"
+cask "insomnia"
 cask "iterm2"
 cask "notion"
 cask "obsidian"
