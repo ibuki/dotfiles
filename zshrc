@@ -1,5 +1,8 @@
+#################### homebrew
+eval $(/opt/homebrew/bin/brew shellenv)
+
 #################### zplug
-source ~/.zplug/init.zsh
+source /opt/homebrew/opt/zplug/init.zsh
 
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-completions"
@@ -73,26 +76,16 @@ bindkey "^N" history-beginning-search-forward-end
 
 
 #################### direnv
-eval "$(/usr/local/bin/direnv hook zsh)"
+eval "$(/opt/homebrew/bin/direnv hook zsh)"
 
 
-#################### rbenv
-export PATH=$HOME/.rbenv/bin:$PATH
-eval "$(rbenv init - zsh)"
+#################### anyenv
+eval "$(anyenv init -)"
 
 
 #################### gopath
 export GOPATH=$HOME/.go
 export PATH=$HOME/.go/bin:$PATH
-
-
-#################### nodenv
-export PATH=$HOME/.nodenv/bin:$PATH
-eval "$(nodenv init -)"
-
-
-#################### mysql5.7 for osx
-export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
 
 
 #################### original commands
@@ -104,9 +97,5 @@ export PATH=$HOME/bin:$PATH
 [ -f ~/dotfiles/fzf.zsh ] && source ~/dotfiles/fzf.zsh
 
 
-#################### use openssl from homebrew
-export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
-
-
 #################### z
-[ -f /usr/local/etc/profile.d/z.sh ] && source /usr/local/etc/profile.d/z.sh
+[ -f /opt/homebrew/etc/profile.d/z.sh ] && source /opt/homebrew/etc/profile.d/z.sh
