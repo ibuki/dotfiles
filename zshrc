@@ -1,3 +1,15 @@
+#################### Env
+export EDITOR=nvim
+export XDG_CONFIG_HOME=$HOME/.config
+
+#################### LANG
+export LANG=ja_JP.UTF-8
+case ${UID} in
+  0)
+    LANG=C
+    ;;
+esac
+
 #################### homebrew
 eval $(/opt/homebrew/bin/brew shellenv)
 
@@ -18,23 +30,11 @@ if ! zplug check --verbose; then
 fi
 zplug load
 
-#################### for neovim
-export EDITOR=nvim
-export XDG_CONFIG_HOME=$HOME/.config
 
-
-#################### vi keybind on command line
+#################### keybind
 bindkey -e
 bindkey -r "^g"
 
-
-#################### LANG
-export LANG=ja_JP.UTF-8
-case ${UID} in
-  0)
-    LANG=C
-    ;;
-esac
 
 
 #################### setopt
@@ -43,40 +43,27 @@ setopt complete_aliases
 setopt correct
 setopt extended_glob
 setopt hist_ignore_all_dups
+setopt hist_ignore_dups
 setopt hist_ignore_space
 setopt hist_reduce_blanks
+setopt ignore_eof
 setopt list_packed
+setopt no_beep
 setopt noautoremoveslash
 setopt nolistbeep
-setopt no_beep
-setopt share_history
-setopt pushd_ignore_dups
 setopt print_eight_bit
-setopt ignore_eof
-
-
-#################### prompt
-autoload colors
-colors
+setopt pushd_ignore_dups
+setopt share_history
 
 
 #################### history
 HISTFILE=~/.zsh_history
 HISTSIZE=100000
 SAVEHIST=100000
-setopt hist_ignore_dups
-
-
-#################### set history search keys
-autoload history-search-end
-zle -N history-beginning-search-backward-end history-search-end
-zle -N history-beginning-search-forward-end history-search-end
-bindkey "^P" history-beginning-search-backward-end
-bindkey "^N" history-beginning-search-forward-end
 
 
 #################### direnv
-eval "$(/opt/homebrew/bin/direnv hook zsh)"
+eval "$(direnv hook zsh)"
 
 
 #################### anyenv
