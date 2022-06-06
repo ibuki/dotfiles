@@ -11,10 +11,11 @@ case ${UID} in
 esac
 
 #################### homebrew
-eval $(/opt/homebrew/bin/brew shellenv)
+eval $(brew shellenv)
+export HOMEBREW_PREFIX=`brew --prefix`
 
 #################### zplug
-source /opt/homebrew/opt/zplug/init.zsh
+source $HOMEBREW_PREFIX/opt/zplug/init.zsh
 
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-completions"
@@ -85,4 +86,4 @@ export PATH=$HOME/bin:$PATH
 
 
 #################### z
-[ -f /opt/homebrew/etc/profile.d/z.sh ] && source /opt/homebrew/etc/profile.d/z.sh
+[ -f $HOMEBREW_PREFIX/etc/profile.d/z.sh ] && source $HOMEBREW_PREFIX/etc/profile.d/z.sh
