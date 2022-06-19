@@ -4,11 +4,16 @@ alias vi='nvim'
 alias vim='nvim'
 alias be='bundle exec'
 alias gs='git status'
+alias gst='git stash -u'
 alias gdh='git diff HEAD'
 alias gbdm='git branch -d `git branch --merged | grep -v \* | grep -v master | grep -v develop`'
+alias gbc='gbdm; git fetch -p'
+alias gitrepocleanup='gcd;gst;grc'
 alias gcmt='git commit -m'
 alias gh="open \`git remote get-url origin | sed -Ee 's#(ssh://)?(git@|git://)#http://#' -e 's@com:@com/@'\`"
-alias gcd='cd `git rev-parse --show-toplevel`'
+alias pwgitdir='gitdir_or_currentdir'
+alias gcd='cd `pwgitdir`'
+alias gadd='git add `pwgitdir`'
 alias od='OVERCOMMIT_DISABLE=1'
 alias top='top -ocpu'
 alias ssh='if ! ssh-add -l >& /dev/null ; then ssh-add -t 12h ; fi ; ssh'
@@ -16,7 +21,7 @@ alias clip="tr -d '\n' | pbcopy && pbpaste"
 alias mv='mv -i'
 alias cp='cp -i'
 alias ports='lsof -i -P | grep "LISTEN"'
-alias dc='docker compose'
+alias dc='docker compose --project-directory=`pwgitdir`'
 alias dcr='dc run --rm'
 alias dce='dc exec'
 alias dcu='dc up'
@@ -43,4 +48,13 @@ function newmux {
 
 function sortdiff {
   diff <(sort $1) <(sort $2)
+}
+
+function gitdir_or_currentdir {
+  git status > /dev/null 2>&1
+  if [[ $? -eq 0 ]]; then
+    git rev-parse --show-toplevel
+  else
+    echo -n '.'
+  fi
 }
