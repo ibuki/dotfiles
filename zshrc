@@ -56,6 +56,13 @@ setopt pushd_ignore_dups
 setopt share_history
 
 
+#################### stty
+if [[ -t 0 ]]; then
+  stty stop undef
+  stty start undef
+fi
+
+
 #################### history
 HISTFILE=~/.zsh_history
 HISTSIZE=100000
