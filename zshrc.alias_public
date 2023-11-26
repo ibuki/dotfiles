@@ -7,8 +7,8 @@ alias gs='git status'
 alias gst='git stash -u'
 alias gdh='git diff HEAD'
 alias gbdm='git branch -d `git branch --merged | grep -v \* | grep -v master | grep -v develop`'
-alias gbc='gbdm; git fetch -p'
-alias gitrepocleanup='gcd;gst;grc'
+alias gbc='git pull; gbdm; git fetch -p'
+alias gitrepocleanup='gcd;gst;gbc'
 alias gcmt='git commit -m'
 alias gh="open \`git remote get-url origin | sed -Ee 's#(ssh://)?(git@|git://)#http://#' -e 's@com:@com/@'\`"
 alias pwgitdir='gitdir_or_currentdir'
@@ -25,6 +25,8 @@ alias dc='docker compose --project-directory=`pwgitdir`'
 alias dcr='dc run --rm'
 alias dce='dc exec'
 alias dcu='dc up'
+alias oc='OPEN_CHROME=1'
+alias python='python3'
 
 # functions
 

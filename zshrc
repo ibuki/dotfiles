@@ -4,6 +4,8 @@ export XDG_CONFIG_HOME=$HOME/.config
 
 #################### LANG
 export LANG=ja_JP.UTF-8
+export LC_ALL=ja_JP.UTF-8
+export LC_CTYPE=ja_JP.UTF-8
 case ${UID} in
   0)
     LANG=C
@@ -12,6 +14,9 @@ esac
 
 #################### homebrew
 eval $(/opt/homebrew/bin/brew shellenv)
+# export CPPFLAGS=-I/opt/homebrew/include
+# export LDFLAGS=-L/opt/homebrew/lib
+
 
 #################### zplug
 source /opt/homebrew/opt/zplug/init.zsh
@@ -37,6 +42,12 @@ bindkey -r "^g"
 
 
 
+#################### history
+HISTFILE=~/.my_zsh_history
+HISTSIZE=500000
+SAVEHIST=500000
+
+
 #################### setopt
 setopt auto_pushd
 setopt complete_aliases
@@ -54,6 +65,8 @@ setopt nolistbeep
 setopt print_eight_bit
 setopt pushd_ignore_dups
 setopt share_history
+setopt append_history
+setopt inc_append_history
 
 
 #################### stty
@@ -62,11 +75,6 @@ if [[ -t 0 ]]; then
   stty start undef
 fi
 
-
-#################### history
-HISTFILE=~/.zsh_history
-HISTSIZE=100000
-SAVEHIST=100000
 
 
 #################### direnv
@@ -93,3 +101,7 @@ export PATH=$HOME/bin:$PATH
 
 #################### z
 [ -f /opt/homebrew/etc/profile.d/z.sh ] && source /opt/homebrew/etc/profile.d/z.sh
+
+
+#################### java
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
