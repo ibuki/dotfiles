@@ -2,7 +2,7 @@
 
 .envrc
 .php_cs.cache
-.vscode
+# .vscode
 stash/
 ignore/
 .solargraph.yml
