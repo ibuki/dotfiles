@@ -35,10 +35,7 @@ dotfiles + 環境セットアップ手順です。
   - vscode-vim
 - homebrew
   - python3 # 使っていない
-  - anyenv
-    - nodenv
-      - yarn
-    - rbenv
+  - mise
   - fzf
   - ghq
   - zsh
@@ -58,9 +55,7 @@ dotfiles + 環境セットアップ手順です。
 - Homebrewの初期化とGitインストール
 - 設定ファイルのインストール
 - Homebrewで依存関係インストール
-- anyenv
-- rbenv
-- nodenv
+- mise
 - tmux
 - vscodeでsettings syncを実行
 
@@ -129,31 +124,6 @@ git config --global user.email johndoe@example.com # 自分のメールアドレ
 ```
 brew bundle --file ~/dotfiles/Brewfile
 ```
-
-### anyenv
-```
-eval "$(anyenv init -)"
-anyenv install --init
-```
-
-### rbenv
-
-```
-anyenv install rbenv
-rbenv install 3.1.1 # 最新
-rbenv global 3.1.1
-gem install bundler neovim rubocop
-```
-
-### nodenv
-
-```
-anyenv install nodenv
-nodenv install 16.14.0 # 最新
-nodenv global 16.14.0
-npm i -g yarn
-```
-
 
 ### tmux
 
