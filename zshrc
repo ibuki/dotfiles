@@ -81,8 +81,8 @@ fi
 eval "$(direnv hook zsh)"
 
 
-#################### anyenv
-eval "$(anyenv init -)"
+#################### mise
+eval "$(mise activate zsh)"
 
 
 #################### gopath
