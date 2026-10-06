@@ -41,3 +41,5 @@
   defaultBranch = master
 [http]
 	postBuffer = 157286400
+[gtr "ai"]
+	default = claude --dangerously-skip-permissions

@@ -67,6 +67,7 @@ setopt pushd_ignore_dups
 setopt share_history
 setopt append_history
 setopt inc_append_history
+setopt interactive_comments
 
 
 #################### stty
@@ -105,3 +106,12 @@ export PATH=$HOME/bin:$PATH
 
 #################### java
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+
+
+# Unity CLI
+. "/Users/ibuki/.unity/env"
+
+
+# Added by Antigravity CLI installer
+export PATH="/Users/ibuki/.local/bin:$PATH"
